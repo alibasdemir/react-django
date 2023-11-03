@@ -1,3 +1,7 @@
 django==4.2.7
 npm install react-bootstrap bootstrap
 npm install react-router-dom
+djangorestframework==3.14.0
+markdown==3.5.1
+django-filter==23.3
+djoser==2.2.0
