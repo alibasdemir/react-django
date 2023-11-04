@@ -33,20 +33,27 @@ class Signup extends Component {
     })
     .then((response) => {
       if (response.status === 400) {
-        // Eksik veri kontrolü başarısız oldu
-        throw new Error("Eksik veri: Kullanıcı adı ve parola gereklidir.");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Kayıt başarılı:", data);
-      toast.success("Kayıt başarılı!");
-    })
-    .catch((error) => {
-      console.error("Hata oluştu:", error.message);
-      toast.error("Hata: " + error.message);
+        return response.json().then((data) => {
+          if (data.username) {
+            // Kullanıcı adı aynıysa hata verecek
+            throw new Error(data.username[0]);
+        } else {
+            // Diğer hatalar burada yazılacak
+            throw new Error("Form eksik veya hatalı.");
+        }
     });
-  };
+  }
+  return response.json();
+  })
+  .then((data) => {
+    console.log("Kayıt başarılı:", data);
+    toast.success("Kayıt başarılı!");
+  })
+  .catch((error) => {
+    console.error("Hata oluştu:", error.message);
+    toast.error("Hata: " + error.message);
+  });
+};
 
   render() {
     return (
