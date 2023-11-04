@@ -1,25 +1,51 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Button, Row, Col, Form, FormControl } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      email: "",
     };
   }
-  onChange = e => {
+
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   onSignupClick = () => {
     const userData = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      email: this.state.email,
     };
-    console.log("Sign up " + userData.username + " " + userData.password);
+
+    fetch("http://127.0.0.1:8000/api/v1/register/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+    .then((response) => {
+      if (response.status === 400) {
+        // Eksik veri kontrolü başarısız oldu
+        throw new Error("Eksik veri: Kullanıcı adı ve parola gereklidir.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Kayıt başarılı:", data);
+      toast.success("Kayıt başarılı!");
+    })
+    .catch((error) => {
+      console.error("Hata oluştu:", error.message);
+      toast.error("Hata: " + error.message);
+    });
   };
 
   render() {
@@ -38,7 +64,6 @@ class Signup extends Component {
                   value={this.state.username}
                   onChange={this.onChange}
                 />
-                <FormControl.Feedback type="invalid"></FormControl.Feedback>
               </Form.Group>
 
               <Form.Group controlId="passwordId">
@@ -47,18 +72,27 @@ class Signup extends Component {
                   type="password"
                   name="password"
                   placeholder="Enter password"
-                  value={this.password}
+                  value={this.state.password}
                   onChange={this.onChange}
                 />
-                <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group controlId="emailId">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                />
               </Form.Group>
             </Form>
-            <Button 
-              color="primary"
-              onClick={this.onSignupClick}  
-            >Sign up</Button>
+            <Button color="primary" onClick={this.onSignupClick}>
+              Sign up
+            </Button>
             <p className="mt-2">
-              Already have account? <Link to="/login">Login</Link>
+              Already have an account? <Link to="/login">Login</Link>
             </p>
           </Col>
         </Row>
