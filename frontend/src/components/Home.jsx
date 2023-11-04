@@ -9,18 +9,30 @@ function Home() {
   return (
     <Container>
       <h1>Home</h1>
-      {user && <p>Welcome, {user.username}!</p>}
-      {/* ... Diğer içerikler ... */}
-      
-      <p>
-        <Link to="/login/">Login</Link>
-      </p>
-      <p>
-        <Link to="/signup">Sign up</Link>
-      </p>
-      <p>
-        <Link to="/dashboard">Dashboard</Link>
-      </p>
+      {user ? (
+        <div>
+          <p>Welcome, {user.username}!</p>
+          <p>
+            <Link to="/login">Login</Link>
+          </p>
+          <p>
+            <Link to="/signup">Sign up</Link>
+          </p>
+          <p>
+            <Link to="/logout">Logout</Link>
+          </p>
+        </div>
+      ) : (
+        <div>
+          <p>Welcome, Guest!</p>
+          <p>
+            <Link to="/login">Login</Link>
+          </p>
+          <p>
+            <Link to="/signup">Sign up</Link>
+          </p>
+        </div>
+      )}
     </Container>
   );
 }
