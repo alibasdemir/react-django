@@ -63,7 +63,9 @@ REST_FRAMEWORK = {
 }
 
 DJOSER = {
-    "USER_ID_FIELD": "username"
+    "USER_ID_FIELD": "id",
+    'HIDE_USERS': False,
+    "SHOW_PASSWORD": True,
 }
 
 MIDDLEWARE = [
@@ -119,13 +121,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 4,  # Minimum şifre uzunluğu
+        },
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+ #   {
+ #       'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+ #       'OPTIONS': {
+ #           'password_list_path': 'path/to/your/passwords.txt',  # Genel parolaların listesi
+#        },
+#    },
+#    {
+#        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#    },
 ]
 
 

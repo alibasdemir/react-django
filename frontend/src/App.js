@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Signup from "./components/signup/Signup";
@@ -8,30 +8,23 @@ import NotFoundPage from "./components/NotFoundPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <BrowserRouter>
+function App() {
+  const [user, setUser] = useState(null);
+
+  return (
+    <div>
+      <BrowserRouter>
         <ToastContainer hideProgressBar={true} newestOnTop={true} />
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/" element={<Home />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    
-    
-
-
-
-
-    
-    );
-  }
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/dashboard" element={<Dashboard user={user} />} />
+          <Route index element={<Home user={user} />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
