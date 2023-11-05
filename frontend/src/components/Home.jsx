@@ -18,7 +18,7 @@ function Home() {
       <h1>Home</h1>
       {user ? (
         <div>
-          <p>Welcome, {user.username}!</p> {/* USERNAME GÖRÜNMÜYOR BU DURUMU ÇÖZ */}
+          <p>Welcome, {user.username}!</p>
           <p>
             <Link to="/login">Login</Link>
           </p>
@@ -34,6 +34,9 @@ function Home() {
           <p>
             <Link to="/userlist">User List</Link>
           </p>
+          <p>
+            <Link to="/test">Test</Link>
+          </p>
         </div>
       ) : (
         <div>
@@ -43,6 +46,9 @@ function Home() {
           </p>
           <p>
             <Link to="/signup">Sign up</Link>
+          </p>
+          <p>
+            <Link to="/test">Test</Link>
           </p>
         </div>
       )}

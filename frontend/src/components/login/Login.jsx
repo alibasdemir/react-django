@@ -28,7 +28,7 @@ function Login() {
         
           const user = {
             auth_token: response.data.auth_token,
-            username: response.data.username,
+            username,
           };
           localStorage.setItem("user", JSON.stringify(user));
 

@@ -9,6 +9,7 @@ import Changepassword from "./components/changepassword/Changepassword";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserList from "./components/userlist/UserList";
+import Test from "./components/Test";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/changepassword" element={<Changepassword /> } />
           <Route path="/userlist" element={<UserList />} />
+          <Route path="/test" index element={<Test />} />
         </Routes>
       </BrowserRouter>
     </div>
