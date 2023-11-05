@@ -18,17 +18,19 @@ function Login() {
       password: password,
     };
 
-    // Kullanıcı girişi API'sini çağırın
+    // Kullanıcı girişi API
     axios
       .post("http://localhost:8000/api/v1/token/login", userData)
       .then((response) => {
         if (response.status === 200) {
           // Kullanıcı oturum açtığında başarılı bir yanıt
           setSuccess("GİRİŞ BAŞARILI + TOKEN:" + response.data.auth_token);
-          
-          const user = { username };
+        
+          const user = {
+            auth_token: response.data.auth_token,
+            username: response.data.username,
+          };
           localStorage.setItem("user", JSON.stringify(user));
-
 
           console.log("GİRİŞ BAŞARILI + TOKEN:" + response.data.auth_token);
           toast.success("GİRİŞ BAŞARILI");
