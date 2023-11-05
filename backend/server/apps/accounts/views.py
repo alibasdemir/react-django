@@ -1,10 +1,12 @@
 from rest_framework import generics
 from .models import Category
 from .serializers import CategorySerializer
+from rest_framework.permissions import AllowAny
 
 class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [AllowAny]
 
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
