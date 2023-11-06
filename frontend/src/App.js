@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserList from "./components/userlist/UserList";
 import Test from "./components/Test";
+import Test2 from "./components/Test2";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,6 +28,7 @@ function App() {
           <Route path="/changepassword" element={<Changepassword /> } />
           <Route path="/userlist" element={<UserList />} />
           <Route path="/test" index element={<Test />} />
+          <Route path="/test2" index element={<Test2 />} />
         </Routes>
       </BrowserRouter>
     </div>

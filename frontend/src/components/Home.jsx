@@ -37,6 +37,9 @@ function Home() {
           <p>
             <Link to="/test">Test</Link>
           </p>
+          <p>
+            <Link to="/test2">Test2</Link>
+          </p>
         </div>
       ) : (
         <div>
