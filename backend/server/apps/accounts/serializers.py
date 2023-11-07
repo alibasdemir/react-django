@@ -10,5 +10,5 @@ class CategorySerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'name', 'location', 'locationUrl', 'owner', 'description', 'category', 'isActive']  
+        fields = ['id', 'name', 'location', 'locationUrl', 'owner', 'description', 'category', 'isActive', 'start_date', 'end_date']  
     category = CategorySerializer()
