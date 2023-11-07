@@ -23,5 +23,18 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+class SeatCategory(models.Model):
+    seatClass = models.CharField(max_length=1, unique=True)
+    totalSeat = models.PositiveIntegerField()
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="seat_categories")
 
+    def __str__(self):
+        return self.seatClass
 
+class Seat(models.Model):
+    seatNumber = models.PositiveIntegerField()
+    seatCategory = models.ForeignKey(SeatCategory, on_delete=models.CASCADE)
+    seatPrice = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.seatCategory.seatClass}{self.seatNumber}"
