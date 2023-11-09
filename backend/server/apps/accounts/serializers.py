@@ -7,20 +7,23 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'title', 'img_url']
 
-class EventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        fields = ['id', 'name', 'location', 'locationUrl', 'owner', 'description', 'category', 'isActive', 'start_date', 'end_date']  
-    category = CategorySerializer()
 
 class SeatCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = SeatCategory
-        fields = ['id', 'seatPrice', 'seatClass', 'totalSeat', 'event']
-    event = EventSerializer()
+        fields = ['id', 'seatPrice', 'seatClass', 'totalSeat']
+
 
 class SeatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seat
-        fields = ['id', 'seatNumber', 'seatCategory', 'seatCategory']
+        fields = ['id', 'seatNumber', 'seatCategory']
     seatCategory = SeatCategorySerializer()
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['id', 'name', 'location', 'locationUrl', 'owner', 'description', 'isActive', 'start_date', 'end_date', 'category', 'seatCategories']  
+    category = CategorySerializer()
+    seatCategories = SeatCategorySerializer(many=True)
