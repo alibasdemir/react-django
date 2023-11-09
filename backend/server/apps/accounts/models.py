@@ -27,14 +27,20 @@ class SeatCategory(models.Model):
     seatClass = models.CharField(max_length=1, unique=True)
     totalSeat = models.PositiveIntegerField()
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="seat_categories")
-
+    seatPrice = models.DecimalField(max_digits=10, decimal_places=2)
     def __str__(self):
         return self.seatClass
+
+    def save(self, *args, **kwargs):
+        super(SeatCategory, self).save(*args, **kwargs)
+        if not Seat.objects.filter(seatCategory=self).exists():
+            for i in range(1, self.totalSeat + 1):
+                seat = Seat(seatNumber=i, seatCategory=self)
+                seat.save()
 
 class Seat(models.Model):
     seatNumber = models.PositiveIntegerField()
     seatCategory = models.ForeignKey(SeatCategory, on_delete=models.CASCADE)
-    seatPrice = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return f"{self.seatCategory.seatClass}{self.seatNumber}"

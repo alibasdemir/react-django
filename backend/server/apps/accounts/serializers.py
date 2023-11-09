@@ -16,11 +16,11 @@ class EventSerializer(serializers.ModelSerializer):
 class SeatCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = SeatCategory
-        fields = ['id', 'seatClass', 'totalSeat', 'event']
+        fields = ['id', 'seatPrice', 'seatClass', 'totalSeat', 'event']
     event = EventSerializer()
 
 class SeatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seat
-        fields = ['id', 'seatNumber', 'seatCategory', 'seatPrice', 'seatCategory']
+        fields = ['id', 'seatNumber', 'seatCategory', 'seatCategory']
     seatCategory = SeatCategorySerializer()
