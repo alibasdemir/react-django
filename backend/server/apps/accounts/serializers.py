@@ -24,6 +24,6 @@ class SeatSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'name', 'location', 'locationUrl', 'owner', 'description', 'isActive', 'start_date', 'end_date', 'category', 'seatCategories']  
+        fields = ['id', 'name', 'location', 'locationUrl', 'owner', 'description', 'isActive', 'start_date', 'end_date', 'category', 'seats']
     category = CategorySerializer()
-    seatCategories = SeatCategorySerializer(many=True)
+    seats = SeatSerializer(many=True)

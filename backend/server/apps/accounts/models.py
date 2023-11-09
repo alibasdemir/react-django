@@ -7,7 +7,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
-    
+     
 class SeatCategory(models.Model):
     seatClass = models.CharField(max_length=1, unique=True)
     totalSeat = models.PositiveIntegerField()
@@ -23,6 +23,14 @@ class SeatCategory(models.Model):
                 seat = Seat(seatNumber=i, seatCategory=self)
                 seat.save()    
 
+class Seat(models.Model):
+    seatNumber = models.PositiveIntegerField()
+    seatCategory = models.ForeignKey(SeatCategory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.seatCategory.seatClass}{self.seatNumber}"
+
+
 class Event(models.Model):
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
@@ -35,15 +43,10 @@ class Event(models.Model):
     start_date = models.DateField(default=timezone.now().date())
     end_date = models.DateField(default=timezone.now().date() + timezone.timedelta(days=15))
 
-    seatCategories = models.ManyToManyField(SeatCategory, related_name="events")
+    seats = models.ManyToManyField(Seat, related_name='events', blank=True)
 
     def __str__(self):
         return self.name
 
-class Seat(models.Model):
-    seatNumber = models.PositiveIntegerField()
-    seatCategory = models.ForeignKey(SeatCategory, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f"{self.seatCategory.seatClass}{self.seatNumber}"
     
