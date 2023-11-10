@@ -45,8 +45,15 @@ class Event(models.Model):
 
     seats = models.ManyToManyField(Seat, related_name='events', blank=True)
 
+    eventImages = models.ManyToManyField('EventImage', related_name='events', blank=True)
+    
     def __str__(self):
         return self.name
 
 
+class EventImage(models.Model):
+    image = models.ImageField(upload_to='event_images/')
+
+    def __str__(self):
+        return f"Image for {self.image.name}"
     

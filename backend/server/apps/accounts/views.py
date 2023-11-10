@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .models import Category, Event, SeatCategory, Seat
-from .serializers import CategorySerializer,EventSerializer, SeatCategorySerializer, SeatSerializer
+from .models import Category, Event, SeatCategory, Seat, EventImage
+from .serializers import CategorySerializer,EventSerializer, SeatCategorySerializer, SeatSerializer, EventImageSerializer
 from rest_framework.permissions import AllowAny
 
 
@@ -39,5 +39,14 @@ class SeatList(generics.ListCreateAPIView):
 class SeatDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Seat.objects.all()
     serializer_class = SeatSerializer
+
+class EventImageList(generics.ListCreateAPIView):
+    queryset = EventImage.objects.all()
+    serializer_class = EventImageSerializer
+    permission_classes = [AllowAny]
+
+class EventImageDetail(generics.RetrieveDestroyAPIView):
+    queryset = EventImage.objects.all()
+    serializer_class = EventImageSerializer
 
 

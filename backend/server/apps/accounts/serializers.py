@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Event, SeatCategory, Seat
+from .models import Category, Event, SeatCategory, Seat, EventImage
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -21,9 +21,16 @@ class SeatSerializer(serializers.ModelSerializer):
     seatCategory = SeatCategorySerializer()
 
 
+class EventImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventImage
+        fields = ['id', 'image']
+
+
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'name', 'location', 'locationUrl', 'owner', 'description', 'isActive', 'start_date', 'end_date', 'category', 'seats']
+        fields = ['id', 'name', 'location', 'locationUrl', 'owner', 'description', 'isActive', 'start_date', 'end_date', 'category', 'seats', 'eventImages']
     category = CategorySerializer()
     seats = SeatSerializer(many=True)
+    eventImages = EventImageSerializer(many=True)
