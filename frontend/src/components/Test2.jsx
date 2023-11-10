@@ -40,6 +40,13 @@ function EventList() {
                 </li>
               ))}
             </ul>
+            <ul>
+              {event.eventImages.map((image) => (
+                <li key={image.id}>
+                  <p>EVENT IMAGES: {image.image}</p>
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>
