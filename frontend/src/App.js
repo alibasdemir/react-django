@@ -18,8 +18,7 @@ function App() {
   console.log('test mesut 2')
   console.log('test mesut 3')
 
-
-
+  console.log("TEST")
 
   return (
     <div>
