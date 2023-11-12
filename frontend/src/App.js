@@ -14,9 +14,11 @@ import Test2 from "./components/Test2";
 
 function App() {
   const [user, setUser] = useState(null);
+  console.log('test mesut 1')
+  console.log('test mesut 2')
+  console.log('test mesut 3')
 
-console.log("TEST")
-  
+  console.log("TEST")
 
   return (
     <div>
