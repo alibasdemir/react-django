@@ -11,14 +11,10 @@ import "react-toastify/dist/ReactToastify.css";
 import UserList from "./components/userlist/UserList";
 import Test from "./components/Test";
 import Test2 from "./components/Test2";
+import { useSelector } from "react-redux"
 
 function App() {
-  const [user, setUser] = useState(null);
-  console.log('test mesut 1')
-  console.log('test mesut 2')
-  console.log('test mesut 3')
-
-  console.log("TEST")
+  const { user } = useSelector((state) => state);
 
   return (
     <div>
@@ -26,7 +22,7 @@ function App() {
         <ToastContainer hideProgressBar={true} newestOnTop={true} />
         <Routes>
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout user={user} />} />
           <Route index element={<Home user={user} />} />
           <Route path="*" element={<NotFoundPage />} />
