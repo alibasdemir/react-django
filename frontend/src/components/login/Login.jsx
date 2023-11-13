@@ -4,8 +4,10 @@ import { Container, Button, Row, Col, Form } from "react-bootstrap";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
 
 function Login() {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -31,6 +33,8 @@ function Login() {
             username,
           };
           localStorage.setItem("user", JSON.stringify(user));
+
+          dispatch({ type: "setUser", payload: user })
 
           console.log("GİRİŞ BAŞARILI + TOKEN:" + response.data.auth_token);
           toast.success("GİRİŞ BAŞARILI");
