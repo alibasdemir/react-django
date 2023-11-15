@@ -10,7 +10,6 @@ const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    // Axios ile verileri çekmek için bir GET isteği yapın.
     axios
       .get("http://127.0.0.1:8000/events")
       .then((response) => {
