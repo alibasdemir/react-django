@@ -50,9 +50,10 @@ class Event(models.Model):
     def __str__(self):
         return self.name
     
-    @property
-    def isActive(self):
-        return self.end_date >= timezone.now().date()
+    def save(self, args, **kwargs):
+        if self.end_date < timezone.now().date():
+            self.isActive = False
+        super().save(args, **kwargs)
 
 
 class EventImage(models.Model):
