@@ -6,17 +6,16 @@ import { RiTwitterXFill } from 'react-icons/ri';
 import { BsSpotify } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-
 function Footer() {
   return (
     <footer className="bg-[#080243] to-indigo-900 text-white py-6 bottom-0">
       <div className="flex justify-between mb-10 mx-24">
         <div className="w-1/5 flex flex-col justify-center items-center pr-10">
+          
           <Link to="/" className="text-3xl font-bold italic text-white mb-3 flex justify-center items-center">
             <span style={{ color: "#ff4500" }}>TICKET</span>
-    <span style={{ color: "#a5b4fc", fontSize:"40px" }}>X</span>
+            <span style={{ color: "#a5b4fc", fontSize: "40px" }}>X</span>
           </Link>
-          
 
           <div className="w-20 h-px bg-blue-400 mb-3"></div>
           <p className='text-sm text-center text-gray-200'><em>Lorem ipsum dolor sit, amet conse ctetu radipisicing elit. Iste, repellendus!</em></p>
@@ -95,15 +94,11 @@ function Footer() {
       </div>
       <div className='h-px bg-blue-800'></div>
       <div className='flex items-center pt-5 ml-20 mr-20 text-slate-300 text-sm'>
-        <p className='hover:underline hover:text-purple-700'>Kullanım Şartları</p>
-
+        <p className='hover:underline hover:text-purple-700' style={{ cursor: 'pointer' }}>Kullanım Şartları</p>
         <div className='ml-5'></div>
-
-        <p className='hover:underline hover:text-purple-700'>Gizlilik politikası</p>
-
+        <p className='hover:underline hover:text-purple-700' style={{ cursor: 'pointer' }}>Gizlilik politikası</p>
         <div className='ml-5'></div>
-
-        <p className=' ml-auto'>©Copyright 2023 Şirket Adı</p>
+        <p className=' ml-auto'>©Copyright 2023 TICKET <b>X</b></p>
       </div>
     </footer>
   );
