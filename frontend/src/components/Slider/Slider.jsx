@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import SlickSlider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
@@ -37,7 +36,6 @@ const slides = [
     title: "Title - Title",
     caption: "Caption for Slide 5",
   },
-  // Add more slides as needed
 ];
 
 const settings = {
@@ -67,6 +65,7 @@ const settings = {
   ],
 };
 
+
 const Slider = () => {
   const sliderRef = useRef(null);
 
@@ -81,43 +80,45 @@ const Slider = () => {
       sliderRef.current.slickNext();
     }
   };
-
+// bg-gray-100 border border-gray-200//
   return (
-    <div className="p-10 h-screen md:p-20 lg:p-40 relative">
+    <div className="pl-[64px] pr-[64px] pt-9 pb-9 mt-1 ">
+    <div className="h-screen md:p-20 lg:pr-20 pl-20 pt-10 pb-0 relative bg-white border rounded-md border-slate-300 overflow-hidden">
       <SlickSlider ref={sliderRef} {...settings}>
         {slides.map((slide, index) => (
-          <div key={index} className="p-2 relative">
+          <div key={index} className="p-2 relative  ">
             <Link to="/">
               <img
                 src={slide.image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-96 object-cover rounded-xl"
+                className="w-full h-96  object-cover rounded-xl border-2 border-indigo-200"
               />
             </Link>
-            <div className="absolute bottom-2 left-2 right-2 bg-[#111827] bg-opacity-50 text-white p-2 rounded-b-xl">
+            <div className="absolute bottom-2 left-2 right-2 bg-[#111827] bg-opacity-50 text-white p-2 rounded-b-xl ">
               <p className="text-left font-semibold">{slide.title}</p>
               <p className="text-left">{slide.caption}</p>
             </div>
           </div>
         ))}
       </SlickSlider>
-      <div className="absolute left-2 top-1/2 transform -translate-y-1/2">
+      <div className="absolute left-2 top-1/2 transform -translate-y-1/2 ">
         <button
-          className="bg-white text-gray-700 p-2 rounded-full"
+          className="bg-purple-300 text-gray-700 p-2 m-2 rounded-full transition-transform transform hover:scale-110 hover:bg-fuchsia-600 hover:text-white animate-bounce"
           onClick={goToPrevSlide}
         >
-          <FaArrowLeft />
+          <FaArrowLeft className="text-2xl bg-" />
         </button>
       </div>
       <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
         <button
-          className="bg-white text-gray-700 p-2 rounded-full"
+          className="bg-purple-300 text-gray-700 p-2 m-2 rounded-full transition-transform transform hover:scale-110 hover:bg-fuchsia-600 hover:text-white animate-bounce" 
           onClick={goToNextSlide}
         >
-          <FaArrowRight />
+          <FaArrowRight className="text-2xl" />
         </button>
       </div>
     </div>
+  </div>
   );
 };
 
