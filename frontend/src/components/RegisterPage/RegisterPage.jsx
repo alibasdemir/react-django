@@ -73,7 +73,7 @@ const RegisterPage = () => {
               alt=""
               className="h-screen"
             />
-            <Link to="/" className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
+            <Link to="/" style={{ textDecoration: 'none' }} className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
             <span style={{ color: "#ff4500" }}>TICKET</span>
     <span style={{ color: "#a5b4fc", fontSize:"40px" }}>X</span>
             </Link>
@@ -88,7 +88,7 @@ const RegisterPage = () => {
               alt=""
               className="h-screen"
             />
-            <Link to="/" className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
+            <Link to="/" style={{ textDecoration: 'none' }} className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
             <span style={{ color: "#ff4500" }}>TICKET</span>
     <span style={{ color: "#a5b4fc", fontSize:"40px" }}>X</span>
             </Link>
@@ -99,7 +99,7 @@ const RegisterPage = () => {
           </div>
           <div className="relative">
             <img src="https://images.unsplash.com/photo-1497911174120-042e550e7e0a?q=80&w=1756&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="h-screen" />
-            <Link to="/" className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
+            <Link to="/" style={{ textDecoration: 'none' }} className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
             <span style={{ color: "#ff4500" }}>TICKET</span>
     <span style={{ color: "#a5b4fc", fontSize:"40px" }}>X</span>
             </Link>
@@ -117,7 +117,7 @@ const RegisterPage = () => {
         data-aos-duration="600"
         data-aos-anchor-placement="top-bottom"
       >
-        <Link to="/" className="text-4xl font-bold italic animate-pulse md:w-auto absolute top-0 right-12 ml-12 mt-12 flex justify-center items-center">
+        <Link to="/"  style={{ textDecoration: 'none' }}  className="text-4xl font-bold italic animate-pulse md:w-auto absolute top-0 right-12 ml-12 mt-12 flex justify-center items-center">
         <span style={{ color: "#ff4500" }}>TICKET</span>
     <span style={{ color: "#a5b4fc", fontSize:"56px" }}>X</span>
         </Link>
