@@ -7,6 +7,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "aos/dist/aos.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -21,8 +24,8 @@ const LoginPage = () => {
   };
 
   const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required"),
-    password: Yup.string().required("Password is required"),
+    username: Yup.string().required("Kullanıcı adı zorunludur"),
+    password: Yup.string().required("Şifre zorunludur"),
   });
 
   useEffect(() => {
@@ -37,21 +40,19 @@ const LoginPage = () => {
     axios
       .post("http://localhost:8000/api/v1/token/login", values)
       .then((response) => {
-        console.log("Login Successful: ", response.data);
-        // Başarılı giriş durumunda toast bildirimi göster
-        toast.success("Login successful. You are now logged in.", {
+        console.log("Giriş Başarılı: ", response.data);
+        toast.success("Giriş başarılı. Şimdi giriş yaptınız.", {
           position: "top-right",
-          autoClose: 3000, // 3 saniye sonra otomatik olarak kapanacak
+          autoClose: 3000,
         });
       })
       .catch((error) => {
-        console.error("Login Error: ", error);
-        // Hata durumunda toast bildirimi göster
+        console.error("Giriş Hatası: ", error);
         toast.error(
-          "Login failed. Please check your credentials and try again.",
+          "Giriş başarısız. Lütfen kimlik bilgilerinizi kontrol edip tekrar deneyin.",
           {
             position: "top-right",
-            autoClose: 3000, // 3 saniye sonra otomatik olarak kapanacak
+            autoClose: 3000,
           }
         );
       })
@@ -60,17 +61,77 @@ const LoginPage = () => {
       });
   };
 
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
+
   return (
+
     <div
-      className="flex-1"
+      className="flex-1 flex items-center justify-center h-screen"
       data-aos="fade-up"
-      data-aos-offset="180"
-      data-aos-duration="600"
-      data-aos-anchor-placement="top-bottom"
+      data-aos-once="true"
     >
-      <div className="container text-center mx-auto mt-32 max-w-md w-screen">
+      <div className="w-[50%] ">
+
+        <Slider {...sliderSettings}>
+          <div className="relative">
+            <img
+              src="https://images.unsplash.com/photo-1583787035686-91b82ad5d811?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt=""
+              className="h-screen"
+            />
+            <Link to="/" className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
+            <span style={{ color: "#ff4500" }}>TICKET</span>
+    <span style={{ color: "#a5b4fc", fontSize:"40px" }}>X</span>
+            </Link>
+            <div className="text-overlay absolute bottom-0 left-0 mb-24 ml-12 flex flex-col items-start text-white">
+              <p className="text-[22px] pb-3 font-bold">Üye Ol!</p>
+              <p className="text-[16px]">İlgi alanlarına ve yaşadığın konuma göre etkinlikler e-postana gelsin.</p>
+            </div>
+          </div>
+          <div className="relative">
+            <img
+              src="https://images.unsplash.com/photo-1514533212735-5df27d970db0?q=80&w=1712&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt=""
+              className="h-screen"
+            />
+            <Link to="/" className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
+            <span style={{ color: "#ff4500" }}>TICKET</span>
+    <span style={{ color: "#a5b4fc", fontSize:"40px" }}>X</span>
+            </Link>
+            <div className="text-overlay absolute bottom-0 left-0 mb-24 ml-12 flex flex-col items-start text-white">
+              <p className="text-[22px] pb-3 font-bold">Yeni etkinliklerden ilk önce senin haberin olsun.</p>
+              <p className="text-[16px]">E-posta gönderimlerine izin ver, binlerce etkinlik arasında kaybolma.</p>
+            </div>
+          </div>
+          <div className="relative">
+            <img src="https://images.unsplash.com/photo-1497911174120-042e550e7e0a?q=80&w=1756&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="h-screen" />
+            <Link to="/" className=" text-3xl font-bold italic md:w-auto absolute top-0 left-0 ml-12 mt-12 flex justify-center items-center">
+            <span style={{ color: "#ff4500" }}>TICKET</span>
+    <span style={{ color: "#a5b4fc", fontSize:"40px" }}>X</span>
+            </Link>
+            <div className="text-overlay absolute bottom-0 left-0 mb-24 ml-12 flex flex-col items-start text-white ">
+              <p className="text-[22px] pb-3 font-bold">Üyeliğin sayesinde hızlıca biletini al.</p>
+              <p className="text-[16px]">Satın aldığın tüm biletlere profilinden ulaş.</p>
+            </div>
+          </div>
+        </Slider>
+      </div>
+      <div className="container text-center mx-auto max-w-md w-screen">
+      <Link to="/" className="text-4xl font-bold italic animate-pulse md:w-auto absolute top-0 right-12 ml-12 mt-12 flex justify-center items-center">
+      <span style={{ color: "#ff4500" }}>TICKET</span>
+    <span style={{ color: "#a5b4fc", fontSize:"56px" }}>X</span>
+        </Link>
         <h1 className="text-2xl font-semibold text-[#111826]">
-          Login to your account
+          Hesabınıza Giriş Yapın
         </h1>
         <Formik
           initialValues={initialValues}
@@ -80,11 +141,11 @@ const LoginPage = () => {
           <Form className="mt-10 flex flex-col space-y-6">
             <div className="flex flex-col items-start">
               <label className="mb-1 inline-block text-sm font-medium text-gray-700 select-none cursor-pointer">
-                Username
+                Kullanıcı Adı
               </label>
               <Field
                 className="block w-full appearance-none rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-gray-900 placeholder-gray-400 sm:text-sm outline-none transition hover:border-gray-300 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-indigo-500 disabled:border-gray-200 disabld:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500"
-                placeholder="Your username"
+                placeholder="Kullanıcı adınız"
                 type="text"
                 name="username"
               />
@@ -96,11 +157,11 @@ const LoginPage = () => {
             </div>
             <div className="flex flex-col items-start relative">
               <label className="mb-1 inline-block text-sm font-medium text-gray-700 select-none cursor-pointer">
-                Password
+                Şifre
               </label>
               <Field
                 className="block w-full appearance-none rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-gray-900 placeholder-gray-400 sm:text-sm outline-none transition hover:border-gray-300 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-indigo-500 disabled:border-gray-200 disabld:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500"
-                placeholder="Password"
+                placeholder="Şifre"
                 name="password"
                 type={passwordVisible ? "text" : "password"}
               />
@@ -132,7 +193,7 @@ const LoginPage = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M2 4l2.585-2.585a1 1 0 011.414 0l1.328 1.327a1 1 0 010 1.414L4.414 7.757a1 1 0 01-1.414 0L2 6.343a1 1 0 010-1.414zm18 0l-2.585-2.585a1 1 0 00-1.414 0L17.657 3.95a1 1 0 000 1.414L19.95 6.343a1 1 0 001.414 0L22 4a1 1 0 000-1.414zM3 10V8a7 7 0 0114 0v2m-4 2v4m0 0H7m4 0h2"
+                      d="M2 4l2.585-2.585a1 1 0 011.414 0l1.328 1.327a1 1 0 010-1.414L4.414 7.757a1 1 0 01-1.414 0L2 6.343a1 1 0 010-1.414zm18 0l-2.585-2.585a1 1 0 00-1.414 0L17.657 3.95a1 1 0 000 1.414L19.95 6.343a1 1 0 001.414 0L22 4a1 1 0 000-1.414zM3 10V8a7 7 0 0114 0v2m-4 2v4m0 0H7m4 0h2"
                     />
                   </svg>
                 ) : (
@@ -159,22 +220,21 @@ const LoginPage = () => {
               </button>
             </div>
             <button
-              className="relative inline-flex flex-col items-center group rounded-xl py-2 px-4 text-sm font-medium transition-all no-underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed bg-indigo-700 text-white hover:text-gray-100 hover:bg-indigo-500 active:bg-indigo-800 active:text-blue-100 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:text-gray-100"
+              className="mx-auto relative inline-flex flex-col items-center group rounded-xl py-2 px-10 text-sm font-medium transition-all no-underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed bg-indigo-700 text-white hover:text-gray-100 hover:bg-purple-700 active:bg-indigo-800 active:text-blue-100 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:text-gray-100 transform hover:scale-105"
               type="submit"
             >
               <span className="flex items-center justify-center flex-nowrap flex-none space-x-2">
-                <span>Login</span>
+                <span>Giriş Yap</span>
               </span>
             </button>
           </Form>
         </Formik>
-        <div className="text-left mt-5">
+        <div className="text-center mt-5">
           <p className="text-sm text-gray-500 ">
-            Don’t have an account?{" "}
+            Hesabınız yok mu?{" "}
             <Link to="/register" className="text-blue-600 underline">
-              Register
+              Buradan kayıt olun.
             </Link>{" "}
-            for a free trial.
           </p>
         </div>
       </div>
