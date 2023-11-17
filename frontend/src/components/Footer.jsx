@@ -7,12 +7,17 @@ import { BsSpotify } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 function Footer() {
+
+  const scrollToTop = () => {
+    window.scrollTo({top:0, behavior:"smooth"})
+  }
+
   return (
     <footer className="bg-[#080243] to-indigo-900 text-white py-6 bottom-0">
       <div className="flex justify-between mb-10 mx-24">
         <div className="w-1/5 flex flex-col justify-center items-center pr-10">
           
-          <Link to="/" className="text-3xl font-bold italic text-white mb-3 flex justify-center items-center">
+          <Link to="/" onClick={scrollToTop} className="text-3xl font-bold italic text-white mb-3 flex justify-center items-center">
             <span style={{ color: "#ff4500" }}>TICKET</span>
             <span style={{ color: "#a5b4fc", fontSize: "40px" }}>X</span>
           </Link>
