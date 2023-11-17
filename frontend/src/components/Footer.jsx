@@ -9,15 +9,15 @@ import { Link } from 'react-router-dom';
 function Footer() {
 
   const scrollToTop = () => {
-    window.scrollTo({top:0, behavior:"smooth"})
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
     <footer className="bg-[#080243] to-indigo-900 text-white py-6 bottom-0">
       <div className="flex justify-between mb-10 mx-24">
         <div className="w-1/5 flex flex-col justify-center items-center pr-10">
-          
-          <Link to="/" onClick={scrollToTop} className="text-3xl font-bold italic text-white mb-3 flex justify-center items-center">
+
+          <Link to="/" onClick={scrollToTop} className="text-3xl font-bold italic text-white mb-3 flex justify-center items-center no-underline">
             <span style={{ color: "#ff4500" }}>TICKET</span>
             <span style={{ color: "#a5b4fc", fontSize: "40px" }}>X</span>
           </Link>
@@ -29,18 +29,18 @@ function Footer() {
         <div className="w-1/7 pt-5">
           <h3 className="text-l font-bold mb-3 pb-2">Hakkımızda</h3>
           <ul>
-            <li><a href="#" className='text-slate-300 text-sm mb-1 hover:underline hover:text-purple-700'>Biz Kimiz</a></li>
-            <li><a href="#" className='text-slate-300 text-sm mb-1 hover:underline hover:text-purple-700'>Kurum Politikamız</a></li>
+            <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700 '>Biz Kimiz</a></li>
+            <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700'>Kurum Politikamız</a></li>
           </ul>
         </div>
 
         <div className="w-1/7 pt-5">
           <h3 className="text-l font-bold mb-3 pb-2">Bağlantılar</h3>
           <ul>
-            <li><a href="#" className='text-slate-300 text-sm mb-1 hover:underline hover:text-purple-700'>Anasayfa</a></li>
-            <li><a href="#" className='text-slate-300 text-sm mb-1 hover:underline hover:text-purple-700'>Etkinlikler</a></li>
-            <li><a href="#" className='text-slate-300 text-sm mb-1 hover:underline hover:text-purple-700'>Biletler</a></li>
-            <li><a href="#" className='text-slate-300 text-sm mb-1 hover:underline hover:text-purple-700'>Yardım/SSS</a></li>
+            <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700'>Anasayfa</a></li>
+            <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700'>Etkinlikler</a></li>
+            <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700'>Biletler</a></li>
+            <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700'>Yardım/SSS</a></li>
           </ul>
         </div>
 
@@ -53,8 +53,8 @@ function Footer() {
           </address>
         </div>
 
-        <div className="w-1/5">
-          <div className='flex flex-row'>
+        <div className="w-1/5 ">
+          <div className='flex flex-row mt-10'>
             <h3 className="text-gray-200 mt-2 font-bold text-l mb-5">Bizi Takip Edin</h3>
           </div>
           <div className="flex flex-row space-x-4">
@@ -103,7 +103,10 @@ function Footer() {
         <div className='ml-5'></div>
         <p className='hover:underline hover:text-purple-700' style={{ cursor: 'pointer' }}>Gizlilik politikası</p>
         <div className='ml-5'></div>
-        <p className=' ml-auto'>©Copyright 2023 TICKET <b>X</b></p>
+        <p className=' ml-auto'>©Copyright 2023 <Link to="/" onClick={scrollToTop} className="text-sm font-bold italic text-white mb-3 no-underline">
+          <span style={{ color: "#ff4500" }}>TICKET</span>
+          <span style={{ color: "#a5b4fc", fontSize: "16px" }}>X</span>
+        </Link></p>
       </div>
     </footer>
   );
