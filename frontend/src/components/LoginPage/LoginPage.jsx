@@ -125,13 +125,19 @@ const LoginPage = () => {
           </div>
         </Slider>
       </div>
+
+
+
       <div className="container text-center mx-auto max-w-md w-screen">
+      <div>
       <Link to="/"  style={{ textDecoration: 'none' }} className="text-4xl font-bold italic animate-pulse md:w-auto absolute top-0 right-12 ml-12 mt-12 flex justify-center items-center">
       <span style={{ color: "#ff4500" }}>TICKET</span>
     <span style={{ color: "#a5b4fc", fontSize:"56px" }}>X</span>
         </Link>
+      </div>
+        <div className="ml-32 mr-32">
         <h1 className="text-2xl font-semibold text-[#111826]">
-          Hesabınıza Giriş Yapın
+          Giriş Yap
         </h1>
         <Formik
           initialValues={initialValues}
@@ -220,7 +226,7 @@ const LoginPage = () => {
               </button>
             </div>
             <button
-              className="mx-auto relative inline-flex flex-col items-center group rounded-xl py-2 px-10 text-sm font-medium transition-all no-underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed bg-indigo-700 text-white hover:text-gray-100 hover:bg-purple-700 active:bg-indigo-800 active:text-blue-100 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:text-gray-100 transform hover:scale-105"
+              className="mx-auto relative inline-flex flex-col items-center group rounded-xl py-2 px-10 text-sm font-medium transition-all no-underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed bg-indigo-700 text-white hover:text-gray-100 hover:bg-purple-700 active:bg-indigo-800 active:text-blue-100 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:text-gray-100 transform hover:scale-105 mt-20"
               type="submit"
             >
               <span className="flex items-center justify-center flex-nowrap flex-none space-x-2">
@@ -238,6 +244,7 @@ const LoginPage = () => {
           </p>
         </div>
       </div>
+        </div>
     </div>
   );
 };
