@@ -238,7 +238,7 @@ const LoginPage = () => {
         <div className="text-center mt-5">
           <p className="text-sm text-gray-500 ">
             Hesabınız yok mu?{" "}
-            <Link to="/register" className="text-blue-600 underline">
+            <Link to="/register" className="text-blue-600 underlin hover:text-purple-700">
               Buradan kayıt olun.
             </Link>{" "}
           </p>

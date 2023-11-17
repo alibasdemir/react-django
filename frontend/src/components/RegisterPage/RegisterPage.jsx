@@ -252,7 +252,7 @@ const RegisterPage = () => {
           <div className="text-center mt-5">
             <p className="text-sm text-gray-500">
               Zaten hesabınız var mı?{" "}
-              <Link to="/login" className="text-blue-600 underline">
+              <Link to="/login" className="text-blue-600 underline hover:text-purple-700">
                 Hesabınıza giriş yapın.
               </Link>{" "}
             </p>
