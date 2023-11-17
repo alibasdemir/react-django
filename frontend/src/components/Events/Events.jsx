@@ -33,7 +33,7 @@ const Events = () => {
 
   return (
     <div className="h-full bg-gray-100">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 p-4 justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 p-20 justify-center  ">
         {eventData &&
           eventData.map((event) => {
             const defaultImageIndex = Math.floor(
@@ -42,7 +42,7 @@ const Events = () => {
 
             return (
               <div className="p-4" key={event.id}>
-                <div className="h-full bg-white rounded-2xl p-6 relative hover:shadow-2xl cursor-pointer">
+                <div className="h-full bg-white rounded-2xl p-6 relative hover:shadow-2xl  cursor-pointer">
                   <article className="w-full block">
                     <Link to="/">
                       {event.eventImages.length > 0 && (
