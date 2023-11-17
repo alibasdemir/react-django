@@ -239,7 +239,7 @@ const RegisterPage = () => {
                 type="submit"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                style={{ width: '150px' }}
+                style={{ width: '130px' }}
               >
                 <span className="flex items-center justify-center flex-nowrap flex-none space-x-2">
                   <span>Kayıt Ol</span>
