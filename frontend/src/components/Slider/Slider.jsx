@@ -8,33 +8,34 @@ import { Link } from "react-router-dom";
 const slides = [
   {
     image:
-      "https://images.unsplash.com/photo-1561912774-79769a0a0a7a?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Title - Title",
-    caption: "Caption for Slide 1",
+      "https://b6s54eznn8xq.merlincdn.net/Uploads/Films/65758d5165254c9a931eb0f23782cffc.webp",
+    title: "Altı Üstü Stand Up Gecesi",
+    caption: "Aralarında BKM açık mikrofon komedyenlerininde bulunduğu 4 komedyenin birbirinden farklı hikayelerine şahitlik edeceğiniz eğlence dolu Stand up gecesi!",
+    
   },
   {
     image:
-      "https://images.unsplash.com/photo-1556906361-853d90896071?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Title - Title",
-    caption: "Caption for Slide 2",
+      "https://yildirimgazetesicom.teimg.com/crop/1280x720/yildirimgazetesi-com/uploads/2023/08/agency/iha/jekyll-hyde-muzikaline-bursada-yogun-ilgi.jpg",
+    title: "Jekyll&Hyde",
+    caption: "İyi ve kötü aynı bedende, birbirine karşı acımasız bir savaş halinde. Ama her şeyin bir sonu vardır.",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1556906360-21ecb6d73117?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Title - Title",
-    caption: "Caption for Slide 3",
+      "https://firsat.me/img/big1024/67134_6538fb9ae26c5_1920x1080.webp",
+    title: "Dracula Müzikali",
+    caption: "Bram Stoker’ın klasik eseri DRACULA sahne sanatlarıyla bir araya geliyor.",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Title - Title",
-    caption: "Caption for Slide 4",
+      "https://cdn.kayiprihtim.com/wp-content/uploads/2023/06/Meksika-Acmazi-Film-Oluyor.jpg",
+    title: "Meksika Açmazı",
+    caption: "İstanbul Komedi Festivali, 6. Yılında Maximum Kart Ana Sponsorluğunda!",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1609103254482-dc7beedc47bf?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Title - Title",
-    caption: "Caption for Slide 5",
+      "https://www.biletix.com/static/images/live/event/eventimages/y7a01.png",
+    title: "Hakikat Elbet Bir Gün Oyunu",
+    caption: "Berkay Ateş'e 25.Cevdet Kudret Edebiyat Ödülü'nü kazandıran, 'Hakikat, Elbet Bir Gün' oyunuyla geliyor!",
   },
 ];
 
@@ -44,8 +45,8 @@ const settings = {
   speed: 500,
   slidesToShow: 2,
   slidesToScroll: 1,
-  autoplay: false,
-  autoplaySpeed: 1000,
+  autoplay: true,
+  autoplaySpeed: 3000,
   arrows: true,
   responsive: [
     {
@@ -80,46 +81,48 @@ const Slider = () => {
       sliderRef.current.slickNext();
     }
   };
-// bg-gray-100 border border-gray-200//
+
   return (
-    <div className="pl-[64px] pr-[64px] pt-9 pb-9 mt-1 ">
-    <div className="h-screen md:p-20 lg:pr-20 pl-20 pt-10 pb-0 relative bg-white border rounded-md border-slate-300 overflow-hidden">
+    <div className="flex items-center justify-center pt-20">
+    <div className="relative w-full max-w-screen-lg">
       <SlickSlider ref={sliderRef} {...settings}>
         {slides.map((slide, index) => (
-          <div key={index} className="p-2 relative  ">
+          <div key={index} className="p-2 relative">
             <Link to="/">
               <img
                 src={slide.image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-96  object-cover rounded-xl border-2 border-indigo-200"
+                className="w-full h-96 object-fill rounded-xl border-2 border-indigo-200"
               />
             </Link>
-            <div className="absolute bottom-2 left-2 right-2 bg-[#111827] bg-opacity-50 text-white p-2 rounded-b-xl ">
-              <p className="text-left font-semibold">{slide.title}</p>
-              <p className="text-left">{slide.caption}</p>
+            <div className="absolute bottom-2 left-2 right-2 bg-[#111827] bg-opacity-70 text-white p-2 rounded-b-xl">
+              <p className="text-left font-bold">{slide.title}</p>
+              <p className="text-left text-sm text-gray-300 truncate">
+                {slide.caption}
+              </p>
             </div>
           </div>
         ))}
       </SlickSlider>
-      <div className="absolute left-2 top-1/2 transform -translate-y-1/2 ">
-        <button
-          className="bg-purple-300 text-gray-700 p-2 m-2 rounded-full transition-transform transform hover:scale-110 hover:bg-fuchsia-600 hover:text-white animate-bounce"
-          onClick={goToPrevSlide}
-        >
-          <FaArrowLeft className="text-2xl bg-" />
-        </button>
-      </div>
-      <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
-        <button
-          className="bg-purple-300 text-gray-700 p-2 m-2 rounded-full transition-transform transform hover:scale-110 hover:bg-fuchsia-600 hover:text-white animate-bounce" 
-          onClick={goToNextSlide}
-        >
-          <FaArrowRight className="text-2xl" />
-        </button>
-      </div>
+    </div>
+    <div className="absolute left-[140px] top-1/2 transform -translate-y-1/2">
+      <button
+        className="bg-purple-300 text-gray-700 p-2 m-2 rounded-full transition-transform transform hover:scale-110 hover:bg-fuchsia-600 hover:text-white animate-bounce"
+        onClick={goToPrevSlide}
+      >
+        <FaArrowLeft className="text-2xl" />
+      </button>
+    </div>
+    <div className="absolute right-[140px] top-1/2 transform -translate-y-1/2">
+      <button
+        className="bg-purple-300 text-gray-700 p-2 m-2 rounded-full transition-transform transform hover:scale-110 hover:bg-fuchsia-600 hover:text-white animate-bounce"
+        onClick={goToNextSlide}
+      >
+        <FaArrowRight className="text-2xl" />
+      </button>
     </div>
   </div>
-  );
+);
 };
 
 export default Slider;
