@@ -47,22 +47,23 @@ const Events = () => {
 
             return (
               <div className="p-4" key={event.id}>
-                <div className="h-full bg-white rounded-2xl  relative hover:shadow-2xl cursor-pointer ">
-                  <article className="w-full block ">
+                <div className="h-full bg-white rounded-2xl  relative hover:shadow-2xl hover:shadow-indigo-400 cursor-pointer transform transition-transform ease-in-out duration-300 hover:scale-105">
+                  <article className="w-full block">
                     <Link to="/">
                       {event.eventImages.length > 0 && (
                         <img
-                          src={event.eventImages[defaultImageIndex].image}
-                          alt={event.category.title}
-                          className="w-full h-48 object-cover rounded-2xl  "
-                        />
+                        src={event.eventImages[defaultImageIndex].image}
+                        alt={event.category.title}
+                        className="w-full h-48 object-cover rounded-2xl "
+                      />
+                      
                       )}
                     </Link>
-                    <div className="mt-1">
+                    <div className="mt-1 ">
                       {" "}
                       <Link to="/" className="no-underline">
 
-                        <h2 className=" pb-2  text-xl sm:text-2xl md:text-lg font-bold text-black pl-6 pt-3">
+                        <h2 className=" pb-2  text-xl sm:text-2xl md:text-lg font-bold text-black pl-6 pt-3  transform hover:scale-105 ">
                           {event.name}
                         </h2>
                         {/* <h3>{event.name}</h3> */}
@@ -94,9 +95,9 @@ const Events = () => {
                           <div className="flex flex-row pt-1 pl-6">
                             <h3 className="text-indigo-600 font">350<span className="text-sm">.00 TL</span></h3>
                           </div>
-
-                          <div className="flex items-center ml-auto ">
-                            <a href=""><FaBasketShopping className="ml-2 mr-6 w-7 h-7  text-indigo-600 hover:text-purple-600 hover:animate-bounce" /></a>
+                         
+                          <div className="flex items-center ml-auto "> <span className="w-px h-12 mr-2 bg-indigo-100"></span>
+                            <a href=""><FaBasketShopping className="ml-2 mr-6 w-7 h-7  text-indigo-600 hover:text-purple-600 hover:scale-110" /></a>
                           </div>
                         </div>
 
@@ -104,7 +105,7 @@ const Events = () => {
                       </Link>
                     </div>
                   </article>
-                  <div className="text-center absolute bottom-6 right-2 border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500">
+                  <div className="text-center absolute bottom-6 right-2 border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 hover:scale-110">
                     <FaShare onClick={() => openShareModal(event)} />
                   </div>
                 </div>
