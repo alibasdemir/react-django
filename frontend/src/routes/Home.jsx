@@ -11,9 +11,8 @@ const Home = () => {
   return (
     <div>
       <Header />
-
-      <img src={photo3} alt="Event 1" className="w-screen pt-14 pl-[64px] pr-[64px] pb-12 " />
       <Slider />
+      <img src={photo3} alt="Event 1" className="w-screen pt-14 pl-[64px] pr-[64px] pb-12 " />
       <Events />
       <ShareModal />
       <img src={photo1} alt="Event 1" className="w-screen pt-12 pl-[64px] pr-[64px] pb-12" />
