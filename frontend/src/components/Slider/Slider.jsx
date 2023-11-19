@@ -21,6 +21,12 @@ const slides = [
   },
   {
     image:
+      "https://staticg.sportskeeda.com/editor/2023/07/419f7-16896018885746-1920.jpg?w=840",
+    title: "Red Bull Campus Clutch Dünya Finali",
+    caption: "VALORANT turnuvası, Red Bull Campus Clutch Dünya Finali'nde İstanbul’da karşı karşıya geliyor! ",
+  },
+  {
+    image:
       "https://firsat.me/img/big1024/67134_6538fb9ae26c5_1920x1080.webp",
     title: "Dracula Müzikali",
     caption: "Bram Stoker’ın klasik eseri DRACULA sahne sanatlarıyla bir araya geliyor.",
@@ -48,6 +54,8 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 3000,
   arrows: true,
+  prevArrow: <></>, // burada çıkan default ok işaretlerini gizledik
+  nextArrow: <></>,
   responsive: [
     {
       breakpoint: 1024,
@@ -83,7 +91,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="flex items-center justify-center pt-20">
+    <div className="flex items-center justify-center pt-10 bg-gray-100 pb-10">
     <div className="relative w-full max-w-screen-lg">
       <SlickSlider ref={sliderRef} {...settings}>
         {slides.map((slide, index) => (
