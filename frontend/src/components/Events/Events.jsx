@@ -52,11 +52,11 @@ const Events = () => {
                     <Link to="/">
                       {event.eventImages.length > 0 && (
                         <img
-                        src={event.eventImages[defaultImageIndex].image}
-                        alt={event.category.title}
-                        className="w-full h-48 object-cover rounded-2xl "
-                      />
-                      
+                          src={event.eventImages[defaultImageIndex].image}
+                          alt={event.category.title}
+                          className="w-full h-48 object-cover rounded-2xl "
+                        />
+
                       )}
                     </Link>
                     <div className="mt-1 ">
@@ -66,7 +66,9 @@ const Events = () => {
                         <h2 className=" pb-2  text-xl sm:text-2xl md:text-lg font-bold text-black pl-6 pt-3  transform hover:scale-105 ">
                           {event.name}
                         </h2>
+
                         {/* <h3>{event.name}</h3> */}
+
                         <div className="flex flex-row pr-6 pl-6" >
                           <div >
                             <FaLocationDot className="text-indigo-700" />
@@ -75,9 +77,11 @@ const Events = () => {
                             <p className="ml-2 text-gray-400 truncate text-sm">{event.owner}</p>
                           </div>
                         </div>
+
                         <div className="border-b border-purple-200">
                           <span></span>
                         </div>
+
                         <div className="flex items-center pr-6 pl-6">
                           <MdDateRange className="mr-2 text-gray-600 " />
                           <p className="text-sm mt-3 text-gray-400 ">
@@ -85,29 +89,26 @@ const Events = () => {
                             {event.start_date} / {event.end_date}
                           </p>
                         </div>
+
+
                         {/* <div className="border-b border-purple-300">
                           <span></span>
                         </div> */}
                         {/* <p className="text-[#6f7287] pt-3 text-sm truncate pr-6 pl-6 ">
                           {event.description}
                         </p> */}
-                        <div className="h-12 mr-14 ml-6 object-cover rounded-2xl bg-gray-100 mb-3 flex flex-row items-center">
-                          <div className="flex flex-row pt-1 pl-6">
-                            <h3 className="text-indigo-600 font">350<span className="text-sm">.00 TL</span></h3>
-                          </div>
-                         
-                          <div className="flex items-center ml-auto "> <span className="w-px h-12 mr-2 bg-indigo-100"></span>
-                            <a href=""><FaBasketShopping className="ml-2 mr-6 w-7 h-7  text-indigo-600 hover:text-purple-600 hover:scale-110" /></a>
-                          </div>
-                        </div>
 
-
+                        <Link to="/" className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-12 mr-14 ml-6  bg-indigo-100 mb-3 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105 hover:text-scale-105">
+                          Etkinlik Detayı
+                        </Link>
                       </Link>
                     </div>
                   </article>
-                  <div className="text-center absolute bottom-6 right-2 border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 hover:scale-110">
+
+                  <div className="text-center absolute bottom-6 right-3 border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 hover:scale-110">
                     <FaShare onClick={() => openShareModal(event)} />
                   </div>
+
                 </div>
               </div>
             );
