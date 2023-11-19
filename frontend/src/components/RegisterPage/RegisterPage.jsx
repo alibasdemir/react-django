@@ -117,11 +117,14 @@ const RegisterPage = () => {
         data-aos-duration="600"
         data-aos-anchor-placement="top-bottom"
       >
+        <div>
         <Link to="/"  style={{ textDecoration: 'none' }}  className="text-4xl font-bold italic animate-pulse md:w-auto absolute top-0 right-12 ml-12 mt-12 flex justify-center items-center">
         <span style={{ color: "#ff4500" }}>TICKET</span>
     <span style={{ color: "#a5b4fc", fontSize:"56px" }}>X</span>
         </Link>
+        </div>
         <div className="container text-center mx-auto max-w-md w-screen">
+          <div className="ml-32 mr-32">
           <h1 className="text-2xl font-semibold text-[#111826]">
             Hesap Oluştur
           </h1>
@@ -231,12 +234,12 @@ const RegisterPage = () => {
                 </button>
               </div>
               <button
-                className={`mx-auto relative inline-flex flex-col items-center group rounded-xl py-2 px-2 text-sm font-medium transition-all no-underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed bg-indigo-700 text-white ${isHovered ? "hover:text-gray-100 hover:bg-purple-700" : "hover:text-gray-100 hover:bg-indigo-500"
+                className={`mx-auto mt-20 relative inline-flex flex-col items-center group rounded-xl py-2 px-2 text-sm font-medium transition-all no-underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed bg-indigo-700 text-white ${isHovered ? "hover:text-gray-100 hover:bg-purple-700" : "hover:text-gray-100 hover:bg-indigo-500"
                   } active:bg-indigo-800 active:text-blue-100 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:text-gray-100 transform hover:scale-105`}
                 type="submit"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                style={{ width: '150px' }}
+                style={{ width: '130px' }}
               >
                 <span className="flex items-center justify-center flex-nowrap flex-none space-x-2">
                   <span>Kayıt Ol</span>
@@ -249,10 +252,11 @@ const RegisterPage = () => {
           <div className="text-center mt-5">
             <p className="text-sm text-gray-500">
               Zaten hesabınız var mı?{" "}
-              <Link to="/login" className="text-blue-600 underline">
+              <Link to="/login" className="text-blue-600 underline hover:text-purple-700">
                 Hesabınıza giriş yapın.
               </Link>{" "}
             </p>
+          </div>
           </div>
 
         </div>
