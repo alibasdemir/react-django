@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
 import { Link } from 'react-router-dom';
@@ -16,31 +16,31 @@ function Header() {
     return (
         <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 p-4 shadow-md pr-10 pl-10">
             <div className="mx-auto flex justify-between items-center ">
-            <Link to="/" className="text-2xl font-bold italic text-white animate-pulse md:w-auto flex justify-center items-center">
+            <Link to="/" className="text-2xl font-bold italic text-white animate-pulse md:w-auto flex justify-center items-center no-underline">
     <span style={{ color: "#ff4500" }}>TICKET</span>
     <span style={{ color: "#a5b4fc", fontSize:"32px" }}>X</span>
 </Link>
 
                 <div id='headerevent' className="items-center space-x-4">
-                <nav style={{ display: 'flex', gap: '5px' }} class="space-x-4">
+                <nav style={{ display: 'flex', gap: '5px' }} className="space-x-4 ">
 
-                    <a href="#" className="text-white hover:text-gray-300 relative group">
+                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
                         Etkinlikler
                         <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
                     </a>
-                    <a href="#" className="text-white hover:text-gray-300 relative group">
+                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
                         Konserler
                         <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
                     </a>
-                    <a href="#" className="text-white hover:text-gray-300 relative group">
+                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
                         Spor
                         <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
                     </a>
-                    <a href="#" className="text-white hover:text-gray-300 relative group">
+                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
                         Tiyatro
                         <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
                     </a>
-                    <a href="#" className="text-white hover:text-gray-300 relative group ">
+                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
                         Aile
                         <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
                     </a>
@@ -87,11 +87,11 @@ function Header() {
                             </div>
                         )}
                     </div>
-                    <Link to="/login" className="text-white hover:text-white relative group transform hover:scale-105 transition-transform">
+                    <Link to="/login" className="text-white hover:text-white relative group transform hover:scale-105 transition-transform no-underline">
                         Giriş Yap
                         <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
                     </Link>
-                    <Link to="/register" className="bg-white text-blue-600 hover:bg-blue-700 hover:text-gray-300 py-2 px-4 rounded-md font-medium hover:ease-out duration-500">
+                    <Link to="/register" className="bg-white text-blue-600 hover:bg-blue-700 hover:text-gray-300 py-2 px-4 rounded-md font-medium hover:ease-out duration-500 no-underline">
                         Kayıt Ol
                     </Link>
                 </div>
