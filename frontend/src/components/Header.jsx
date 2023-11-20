@@ -1,17 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
 import { Link } from 'react-router-dom';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
 
 function Header() {
     const [cartOpen, setCartOpen] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const [categories, setCategories] = useState([]);
    
 
     const openCart = () => {
         setCartOpen(!cartOpen);
     };
  
+    useEffect(() => {
+        const fetchCategories = async () => {
+          try {
+            const response = await fetch('http://localhost:8000/categories');
+            if (response.ok) {
+              const data = await response.json();
+              setCategories(data);
+            }
+          } catch (error) {
+            console.error('Error fetching categories:', error);
+          }
+        };
+    
+        fetchCategories();
+      }, []);
+    
+
 
     return (
         <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 p-4 shadow-md pr-10 pl-10">
@@ -23,6 +43,16 @@ function Header() {
 
                 <div id='headerevent' className="items-center space-x-4">
                 <nav style={{ display: 'flex', gap: '5px' }} className="space-x-4 ">
+
+
+                <NavDropdown title="Etkinlik Kategorileri" id="basic-nav-dropdown" style={{ color: 'white' }}>
+                {categories.map((category) => (
+                    <NavDropdown.Item key={category.id}>
+                        <Link to={`/categories/${category.id}`} style={{ color:'black', textDecoration: 'none' }}>{category.title}</Link>
+                    </NavDropdown.Item>
+                ))}
+                </NavDropdown>
+
 
                     <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
                         Etkinlikler
