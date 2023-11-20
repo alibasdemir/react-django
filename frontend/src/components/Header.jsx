@@ -5,77 +5,99 @@ import { Link } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
+
+
 function Header() {
     const [cartOpen, setCartOpen] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [categories, setCategories] = useState([]);
-   
+
 
     const openCart = () => {
         setCartOpen(!cartOpen);
     };
- 
+
     useEffect(() => {
         const fetchCategories = async () => {
-          try {
-            const response = await fetch('http://localhost:8000/categories');
-            if (response.ok) {
-              const data = await response.json();
-              setCategories(data);
+            try {
+                const response = await fetch('http://localhost:8000/categories');
+                if (response.ok) {
+                    const data = await response.json();
+                    setCategories(data);
+                }
+            } catch (error) {
+                console.error('Error fetching categories:', error);
             }
-          } catch (error) {
-            console.error('Error fetching categories:', error);
-          }
         };
-    
+
         fetchCategories();
-      }, []);
-    
+    }, []);
+
 
 
     return (
         <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 p-4 shadow-md pr-10 pl-10">
             <div className="mx-auto flex justify-between items-center ">
-            <Link to="/" className="text-2xl font-bold italic text-white animate-pulse md:w-auto flex justify-center items-center no-underline">
-    <span style={{ color: "#ff4500" }}>TICKET</span>
-    <span style={{ color: "#a5b4fc", fontSize:"32px" }}>X</span>
-</Link>
+                <Link to="/" className="text-2xl font-bold italic text-white animate-pulse md:w-auto flex justify-center items-center no-underline">
+                    <span style={{ color: "#ff4500" }}>TICKET</span>
+                    <span style={{ color: "#a5b4fc", fontSize: "32px" }}>X</span>
+                </Link>
 
                 <div id='headerevent' className="items-center space-x-4">
-                <nav style={{ display: 'flex', gap: '5px' }} className="space-x-4 ">
+                    <nav style={{ display: 'flex', gap: '5px' }} className="space-x-4 ">
+
+                        <Link to={"/"} className="text-white relative group no-underline">
+                            Konser
+                            <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </Link>
+                        <Link to={"/"} className="text-white relative group no-underline">
+                            Tiyatro
+                            <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </Link>
+                        <Link to={"/"} className="text-white  relative group no-underline">
+                            Spor
+                            <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </Link>
+                        <Link to={"/"} className="text-white relative group no-underline">
+                            Aile & Çocuk
+                            <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </Link>
+
+                        <NavDropdown title="Diğer" id="basic-nav-dropdown" style={{ color: 'white' }} >
+                            {categories.map((category) => (
+                                <NavDropdown.Item key={category.id} style={{ paddingBottom:"8px"}} >
+                                    <Link to={`/categories/${category.id}`} style={{ color: '#3730a3', textDecoration: 'none', fontSize: "16px",  }} className='  font-bold '>
+                                        {category.title}
+                                    </Link>
+                                </NavDropdown.Item>
+                            ))}
+                        </NavDropdown>
 
 
-                <NavDropdown title="Etkinlik Kategorileri" id="basic-nav-dropdown" style={{ color: 'white' }}>
-                {categories.map((category) => (
-                    <NavDropdown.Item key={category.id}>
-                        <Link to={`/categories/${category.id}`} style={{ color:'black', textDecoration: 'none' }}>{category.title}</Link>
-                    </NavDropdown.Item>
-                ))}
-                </NavDropdown>
 
 
-                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
-                        Etkinlikler
-                        <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
-                    </a>
-                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
-                        Konserler
-                        <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
-                    </a>
-                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
-                        Spor
-                        <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
-                    </a>
-                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
-                        Tiyatro
-                        <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
-                    </a>
-                    <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
-                        Aile
-                        <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
-                    </a>
-                </nav>
-            </div>
+                        {/* <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
+                            Etkinlikler
+                            <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </a>
+                        <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
+                            Konserler
+                            <span class="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </a>
+                        <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
+                            Spor
+                            <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </a>
+                        <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
+                            Tiyatro
+                            <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </a>
+                        <a href="#" className="text-white hover:text-gray-300 relative group no-underline">
+                            Aile
+                            <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                        </a> */}
+                    </nav>
+                </div>
                 <div id='searchbarheader' className="flex items-center space-x-4">
                     <div className="flex items-center">
                         <div className="relative">
@@ -127,7 +149,7 @@ function Header() {
                 </div>
 
             </div>
-            
+
         </header >
     )
 }
