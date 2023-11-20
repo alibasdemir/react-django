@@ -50,10 +50,10 @@ class Event(models.Model):
     def __str__(self):
         return self.name
     
-    def save(self, args, **kwargs):
+"""     def save(self, args, **kwargs):
         if self.end_date < timezone.now().date():
             self.isActive = False
-        super().save(args, **kwargs)
+        super().save(args, **kwargs) """
 
 
 class EventImage(models.Model):
