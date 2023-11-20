@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { FaLocationDot } from "react-icons/fa6";
@@ -56,7 +56,6 @@ function CategoryPage() {
           <div className="p-4" key={event.id}>
             <div className="h-full bg-white rounded-2xl relative hover:shadow-2xl hover:shadow-indigo-400 cursor-pointer transform transition-transform ease-in-out duration-300 hover:scale-105">
               <article className="w-full block">
-                <Link to="/">
                   {event.eventImages.length > 0 && (
                     <img
                       src={event.eventImages[0].image}
@@ -64,13 +63,10 @@ function CategoryPage() {
                       className="w-full h-48 object-cover rounded-2xl"
                     />
                   )}
-                </Link>
                 <div className="mt-1 text-center">
-                  <Link to="/" className="no-underline">
                     <h2 className="pb-2 text-xl sm:text-2xl md:text-lg font-bold text-black pt-3">
                       {event.name}
                     </h2>
-                  </Link>
 
                   <div className="flex flex-row pr-6 pl-6 justify-center" >
                           <div >
@@ -94,12 +90,9 @@ function CategoryPage() {
 
 
                   <div className="flex justify-center">
-                    <Link
-                      to="/"
-                      className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-10 w-48 bg-indigo-100 mb-3 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105"
-                    >
+                    <a href={`/events/${event.id}`} className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-10 w-48 bg-indigo-100 mb-3 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105">
                       Etkinlik Detayı
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </article>

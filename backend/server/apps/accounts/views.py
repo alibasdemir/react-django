@@ -22,6 +22,7 @@ class EventList(generics.ListCreateAPIView):
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    permission_classes = [AllowAny]
 
 class SeatCategoryList(generics.ListCreateAPIView):
     queryset = SeatCategory.objects.all()
@@ -30,7 +31,8 @@ class SeatCategoryList(generics.ListCreateAPIView):
 
 class SeatCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = SeatCategory.objects.all()
-    serializer_class = SeatCategorySerializer    
+    serializer_class = SeatCategorySerializer
+    permission_classes = [AllowAny]    
 
 class SeatList(generics.ListCreateAPIView):
     queryset = Seat.objects.all()
@@ -40,6 +42,7 @@ class SeatList(generics.ListCreateAPIView):
 class SeatDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Seat.objects.all()
     serializer_class = SeatSerializer
+    permission_classes = [AllowAny]
 
 class EventImageList(generics.ListCreateAPIView):
     queryset = EventImage.objects.all()
@@ -49,6 +52,7 @@ class EventImageList(generics.ListCreateAPIView):
 class EventImageDetail(generics.RetrieveDestroyAPIView):
     queryset = EventImage.objects.all()
     serializer_class = EventImageSerializer
+    permission_classes = [AllowAny]
 
 
 class EventListForCategory(generics.ListAPIView):
