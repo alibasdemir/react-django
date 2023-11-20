@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CategoryList, CategoryDetail, EventList, EventDetail, SeatList, SeatDetail, SeatCategoryList, SeatCategoryDetail, EventImageList, EventImageDetail
+from .views import CategoryList, CategoryDetail, EventList, EventDetail, SeatList, SeatDetail, SeatCategoryList, SeatCategoryDetail, EventImageList, EventImageDetail, EventListForCategory
 from apps.accounts.signals import create_category_api, create_event_api
 
 accounts_urlpatterns = [
@@ -23,5 +23,7 @@ accounts_urlpatterns = [
 
     path('create_category_api/', create_category_api, name='create-category-api'),
     path('create_event_api/', create_event_api, name='create_event_api'),
+
+    path('categories/<int:category_id>/events/', EventListForCategory.as_view(), name='category-events-list')
 
 ]

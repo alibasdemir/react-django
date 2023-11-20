@@ -12,6 +12,7 @@ import UserList from "./components/userlist/UserList";
 import Test from "./components/Test";
 import Test2 from "./components/Test2";
 import { useSelector } from "react-redux";
+import CategoryPage from './components/CategoryPage';
 
 function App() {
   const { user } = useSelector((state) => state);
@@ -31,6 +32,9 @@ function App() {
           <Route path="/userlist" element={<UserList />} />
           <Route path="/test" index element={<Test />} />
           <Route path="/test2" index element={<Test2 />} />
+          <Route path="/categories/:categoryId" element={<CategoryPage />} />
+
+
         </Routes>
       </BrowserRouter>
     </div>

@@ -12,6 +12,7 @@ class CategoryList(generics.ListCreateAPIView):
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [AllowAny]
 
 class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()
@@ -50,3 +51,11 @@ class EventImageDetail(generics.RetrieveDestroyAPIView):
     serializer_class = EventImageSerializer
 
 
+class EventListForCategory(generics.ListAPIView):
+    serializer_class = EventSerializer
+    permission_classes = [AllowAny] 
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        category_events = Event.objects.filter(category_id=category_id)
+        return category_events
