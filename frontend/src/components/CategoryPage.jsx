@@ -11,6 +11,21 @@ function CategoryPage() {
   const [categoryTitle, setCategoryTitle] = useState('');
   const [categoryImage, setCategoryImage] = useState('');
 
+  //state onChange for Date filter
+  const [date, setDate] = useState({
+    start: "",
+    end: ""
+  })
+
+  //function for managing date state
+  const handleDate = (e) => {
+    const {name, value} = e.target 
+    setDate(preVal => ({
+        ...preVal,
+        [name]: value
+    }))
+  }
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -35,6 +50,52 @@ function CategoryPage() {
   }, [categoryId]);
 
 
+  //Filter array to adjust filters 
+
+  const [filterEvents, setFilterEvents] = useState([])
+  useEffect(() => {
+    setFilterEvents(events)
+  }, [events])
+  
+  // Function to manage all filter events regarding their type and id
+  const handleFilter = (e) => {
+    const {id, type} = e.target
+    if(type === "location" && !filterEvents.every(event => event.location === id)
+    || (type === "owner" && !filterEvents.every(event => event.owner === id)))
+    {
+      setFilterEvents(events.filter(item  => {
+        return type === "location" ? item.location === id : item.owner === id
+      }))
+    }
+    if(id === "search" && ((date.start && date.end) && date.start <= date.end)){
+      setFilterEvents(events.filter(item => (item.start_date <= date.start && item.end_date >= date.start) || 
+        (item.start_date >= date.start && item.start_date <= date.end)))
+    }
+  }
+
+  //Location list from all object to list them on page according to filterEvents
+    const locationCount = filterEvents.reduce((acc, event) => {
+    const location = event.location;
+    acc[location] = (acc[location] || 0) + 1;
+    return acc;
+    }, {});
+
+  //Owner list from all object to list them on page according to filterEvents
+    const ownerCount = filterEvents.reduce((acc, event) => {
+    const owner = event.owner;
+    acc[owner] = (acc[owner] || 0) + 1;
+    return acc;
+    }, {});
+    
+  //Clear function to clear all filters
+  const handleClear = () => {
+    setFilterEvents(events)
+    setDate({
+    start: "",
+    end: ""
+    })
+  }
+
   return (
     <div>
       <Header />
@@ -51,8 +112,41 @@ function CategoryPage() {
             />
           )}
       <br />
+      <div className='filter-div flex gap-40 justify-center p-1 ' >
+        <div className="date flex flex-col align-center">
+          <h2>Tarih Aralığı</h2>
+          <p>Başlangıç Tarihi: <input type="date" onChange={handleDate} name="start" value={date.start}  /> </p>
+          <p>Bitiş Tarihi: <input type="date" onChange={handleDate} name="end" value={date.end} /> </p>
+          <span className="cursor-pointer" onClick={handleFilter} id='search'>ARA</span>
+        </div>
+        <div className="location flex flex-col align-center">
+          <h2>Konum</h2>
+          <ul className='p-0 flex flex-col align-center'>
+            {Object.entries(locationCount).map(([location, count]) => (
+              <li className='cursor-pointer' 
+              onClick={handleFilter} key={location} id={location} type='location'>
+                {location} ({count})
+              </li>
+            ))}
+          </ul>
+          
+        </div>
+        <div className="owner flex flex-col align-center">
+          <h2>Etkinlik Sahibi</h2>
+          <ul>
+            {Object.entries(ownerCount).map(([owner, count]) => (
+              <li className='cursor-pointer '
+              onClick={handleFilter} key={owner} id={owner} type='owner'>
+               {owner} ({count})
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="clear-btn"><button onClick={handleClear}>Filtreleri Temizle</button></div>
+
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 p-[4px] justify-center">
-        {events.map((event) => (
+        {filterEvents.map((event) => (
           <div className="p-4" key={event.id}>
             <div className="h-full bg-white rounded-2xl relative hover:shadow-2xl hover:shadow-indigo-400 cursor-pointer transform transition-transform ease-in-out duration-300 hover:scale-105">
               <article className="w-full block">
