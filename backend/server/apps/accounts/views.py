@@ -2,7 +2,13 @@ from rest_framework import generics
 from .models import Category, Event, SeatCategory, Seat, EventImage
 from .serializers import CategorySerializer,EventSerializer, SeatCategorySerializer, SeatSerializer, EventImageSerializer
 from rest_framework.permissions import AllowAny
-
+from django.db.models import Q
+from django.http import JsonResponse
+from unidecode import unidecode
+from unicodedata import normalize
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse
+import json
 
 class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
@@ -63,3 +69,32 @@ class EventListForCategory(generics.ListAPIView):
         category_id = self.kwargs['category_id']
         category_events = Event.objects.filter(category_id=category_id)
         return category_events
+    
+
+
+def normalize_search_term(term):
+    return unidecode(term).lower()
+
+def search_events(request):
+    query = request.GET.get('query', '').strip()
+
+    normalized_query = normalize_search_term(query)
+
+    search_terms = normalized_query.split()
+
+    events = Event.objects.all()
+
+    for term in search_terms:
+        normalized_term = unidecode(term).lower()
+        events = events.filter(
+            Q(name__icontains=normalized_term) |
+            Q(location__icontains=normalized_term) |
+            Q(owner__icontains=normalized_term)
+        )
+
+    serialized_data = [
+        {'id': event.id, 'name': event.name, 'location': event.location, 'owner': event.owner}
+        for event in events
+    ]
+
+    return JsonResponse(serialized_data, safe=False, json_dumps_params={'ensure_ascii': False})

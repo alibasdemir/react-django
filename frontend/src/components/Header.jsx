@@ -61,6 +61,32 @@ function Header() {
       };
     }
 
+    const [searchTerm, setSearchTerm] = useState('');
+
+    function normalizeTurkishChars(text) {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    const handleSearch = async () => {
+        const normalizedTerm = normalizeTurkishChars(searchTerm).toLowerCase();
+
+        try {
+            const response = await fetch(`http://localhost:8000/search-events/?query=${encodeURIComponent(normalizedTerm)}`);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Search Results:', data);
+            } else {
+                console.error('An error occurred during search.');
+            }
+        } catch (error) {
+            console.error('An error occurred during search:', error);
+        }
+    };
+
+    const handleInputChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
     return (
         <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 p-4 shadow-md pr-10 pl-10">
             <div className="mx-auto flex justify-between items-center ">
@@ -111,9 +137,11 @@ function Header() {
                                 type="text"
                                 placeholder="Etkinlik, sanatçı ya da mekan arayın..."
                                 className="px-4 py-1 rounded-md border-2 border-solid border-white focus:outline-none w-96 placeholder:italic text-sm"
+                                value={searchTerm}
+                                onChange={handleInputChange}
                             />
                             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                <button>
+                                <button onClick={handleSearch}>
                                     <AiOutlineSearch />
                                 </button>
                             </div>

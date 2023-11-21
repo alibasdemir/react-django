@@ -1,6 +1,7 @@
 from django.urls import path, include
 from .views import CategoryList, CategoryDetail, EventList, EventDetail, SeatList, SeatDetail, SeatCategoryList, SeatCategoryDetail, EventImageList, EventImageDetail, EventListForCategory
 from apps.accounts.signals import create_category_api, create_event_api
+from . import views
 
 accounts_urlpatterns = [
     path('api/v1/', include('djoser.urls')),
@@ -24,6 +25,8 @@ accounts_urlpatterns = [
     path('create_category_api/', create_category_api, name='create-category-api'),
     path('create_event_api/', create_event_api, name='create_event_api'),
 
-    path('categories/<int:category_id>/events/', EventListForCategory.as_view(), name='category-events-list')
+    path('categories/<int:category_id>/events/', EventListForCategory.as_view(), name='category-events-list'),
+
+    path('search-events/', views.search_events, name='search_events'),
 
 ]
