@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
+
+  const navigate = useNavigate();
+
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -18,9 +22,9 @@ const RegisterPage = () => {
   };
 
   const initialValues = {
-    email: "",
     username: "",
     password: "",
+    email: "",
   };
 
   const validationSchema = Yup.object({
@@ -31,18 +35,28 @@ const RegisterPage = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     axios
-      .post("http://localhost:8000/api/v1/users/", values)
-      .then((response) => {
-        console.log("Kayıt Başarılı: ", response.data);
+    .post("http://localhost:8000/api/v1/users/", values)
+    .then((response) => {
+      console.log("Kayıt Başarılı: ", response.data);
+      toast.success("Kayıt başarılı!");
+        navigate('/');
+      if (response.data && response.data.usernameTaken) {
+        toast.error("Kullanıcı adı zaten kayıtlı");
+      } else {
+        }
       })
       .catch((error) => {
-        console.error("Kayıt Hatası: ", error);
+        if (error.response && error.response.data && error.response.data.username && error.response.data.username.length > 0) {
+          const errorMessage = error.response.data.username[0];
+          toast.error(errorMessage);
+        }
+        console.error("Kayıt Hatası: ", error.response.data);
       })
       .finally(() => {
         setSubmitting(false);
       });
   };
-
+  
   useEffect(() => {
     AOS.init({
       offset: 180,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -12,6 +12,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -45,6 +47,7 @@ const LoginPage = () => {
           position: "top-right",
           autoClose: 3000,
         });
+        navigate('/');
       })
       .catch((error) => {
         console.error("Giriş Hatası: ", error);

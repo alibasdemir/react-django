@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Button, Row, Col, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     username: "",
     password: "",
@@ -41,6 +43,7 @@ function Signup() {
       .then((data) => {
         console.log("Kayıt başarılı:", data);
         toast.success("Kayıt başarılı!");
+        navigate('/');
       })
       .catch((error) => {
         console.error("Hata oluştu:", error.message);
