@@ -47,6 +47,15 @@ const LoginPage = () => {
           position: "top-right",
           autoClose: 3000,
         });
+
+
+        const user = {
+          auth_token: response.data.auth_token,
+          username: values.username,
+        };
+        localStorage.setItem("user", JSON.stringify(user));
+
+
         navigate('/');
       })
       .catch((error) => {

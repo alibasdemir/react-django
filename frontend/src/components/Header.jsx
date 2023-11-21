@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { SlBasket } from 'react-icons/sl';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Header() {
     const [cartOpen, setCartOpen] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [categories, setCategories] = useState([]);
-   
+    const navigate = useNavigate();
 
     const openCart = () => {
         setCartOpen(!cartOpen);
@@ -31,7 +33,33 @@ function Header() {
         fetchCategories();
       }, []);
     
+      const [user, setUser] = useState(null);
+      const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+      useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        if (storedUser) {
+          setUser(storedUser);
+          setIsLoggedIn(true);
+        }
+      }, []);
+
+      useEffect(() => {
+        console.log("User:", user); // Kullanıcı objesini konsolda göster
+      }, [user]);
+
+      const handleLogout = () => {
+        localStorage.removeItem("user");
+        if (window.location.pathname === '/') {
+            toast.success('Çıkış yapıldı');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        } else {
+            navigate("/");
+            toast.success('Çıkış yapıldı');
+      };
+    }
 
     return (
         <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 p-4 shadow-md pr-10 pl-10">
@@ -94,6 +122,13 @@ function Header() {
                     </div>
                 </div>
 
+                {user ? (
+   
+          <p style={{color: 'white', fontSize: '18px'}}>HOŞGELDİN, <span style={{color: 'yellow', fontSize: '24px', fontWeight: 'bold'}}>{user.username}</span> !</p>
+          ) : (
+              <p style={{color: 'white', fontSize: '18px'}}>Giriş Yapmadınız !</p>
+                )}
+
                 <div id='headerbuttons' className="flex items-center space-x-4">
                     <div className="relative flex items-center mr-3">
                         <button
@@ -117,13 +152,21 @@ function Header() {
                             </div>
                         )}
                     </div>
+                    {isLoggedIn ? (
+          <button onClick={handleLogout} className="text-white hover:text-white relative group transform hover:scale-105 transition-transform no-underline">
+            Çıkış Yap
+            <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+          </button>
+        ) : (
                     <Link to="/login" className="text-white hover:text-white relative group transform hover:scale-105 transition-transform no-underline">
                         Giriş Yap
                         <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
                     </Link>
+        )}
                     <Link to="/register" className="bg-white text-blue-600 hover:bg-blue-700 hover:text-gray-300 py-2 px-4 rounded-md font-medium hover:ease-out duration-500 no-underline">
                         Kayıt Ol
                     </Link>
+                
                 </div>
 
             </div>
