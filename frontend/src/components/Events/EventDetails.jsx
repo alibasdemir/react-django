@@ -9,6 +9,47 @@ import 'slick-carousel/slick/slick-theme.css';
 
 
 function EventDetails() {
+
+  const seatContainerStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '10px',
+    justifyContent: 'center',
+    marginTop: '20px',
+  };
+
+  const seatStyle = {
+    width: '70px',
+    height: '70px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '14px',
+    cursor: 'pointer',
+    backgroundColor: 'red',
+    color: 'white',
+    fontWeight: 'bold', 
+  };
+
+
+  const imageWrapperStyle = {
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+    margin: '0 auto', 
+  };
+
+  const imageStyle = {
+    width: '20vw',
+    height: '20vw', 
+    objectFit: 'cover',
+    borderRadius: '10px',
+    margin: 'auto'
+  };
+
+
+
   const [event, setEvent] = useState(null);
   const { eventId } = useParams();
 
@@ -54,16 +95,18 @@ function EventDetails() {
   return (
     <div className="">
       <Header />
+      <br />
       <div>
-        <div className="eventHeader">
+        <div className="eventHeader text-center">
           <h1>{event.name}</h1>
         </div>
+        <br />
 
         <Slider {...settings}>
       {event.eventImages.map((image, index) => (
-        <div key={index}>
+        <div key={index} style={imageWrapperStyle}>
           <img
-            style={{ width: "25vw", height: "25vw", margin: "auto" }}
+            style={imageStyle}
             src={image.image}
             alt=""
           />
@@ -71,6 +114,10 @@ function EventDetails() {
       ))}
     </Slider>
 
+<br />
+<br />
+<br />
+<br />
 
         <div>
           <span>{event.location}</span>
@@ -86,7 +133,20 @@ function EventDetails() {
           <p><span className='font-semibold'>Konum URL:</span> 
           <iframe src={event.locationUrl} frameborder="0" style={{width: "500px", height: "500px"}}></iframe></p>
         </div>
+        <h1>KOLTUKLAR</h1>
+
+        <div style={seatContainerStyle}>
+          {event.seats.map((seat, index) => (
+          <div key={index} style={seatStyle}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ fontSize: '18px' }}>{seat.seatCategory.seatClass}{seat.seatNumber}</div>
+              <div style={{ marginTop: '5px' }}>{seat.seatCategory.seatPrice} TL</div>
+            </div>
+            </div>
+          ))}
+        </div>
       </div>
+      <br />
       <Footer />
     </div>
   );
