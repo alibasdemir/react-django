@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Sepet from '../Sepet';
 
 
 
@@ -52,6 +53,21 @@ function EventDetails() {
 
   const [event, setEvent] = useState(null);
   const { eventId } = useParams();
+
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [isBasketOpen, setIsBasketOpen] = useState(false);
+
+
+  const toggleSeatSelection = (index) => {
+    const updatedSeats = [...selectedSeats];
+    updatedSeats[index] = !updatedSeats[index];
+    setSelectedSeats(updatedSeats);
+  };
+  
+  const addToBasket = () => {
+    const selectedSeatDetails = event.seats.filter((_, index) => selectedSeats[index]);
+    console.log('Selected Seats:', selectedSeatDetails);
+  };
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -137,7 +153,11 @@ function EventDetails() {
 
         <div style={seatContainerStyle}>
           {event.seats.map((seat, index) => (
-          <div key={index} style={seatStyle}>
+          <div key={index} style={{
+            ...seatStyle,
+            backgroundColor: selectedSeats[index] ? 'green' : 'red',
+          }}
+          onClick={() => toggleSeatSelection(index)}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ fontSize: '18px' }}>{seat.seatCategory.seatClass}{seat.seatNumber}</div>
               <div style={{ marginTop: '5px' }}>{seat.seatCategory.seatPrice} TL</div>
@@ -145,6 +165,32 @@ function EventDetails() {
             </div>
           ))}
         </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <button onClick={() => {
+            addToBasket();
+            setIsBasketOpen(true);
+          }} 
+          style={{
+            backgroundColor: 'blue',
+            color: 'white',
+            padding: '8px 16px',
+            border: 'none',
+            borderRadius: '4px',
+            margin: '25px'
+          }}>
+            Sepete Ekle
+          </button>
+        </div>
+
+{isBasketOpen && (
+  <div className="basketModal">
+    <Sepet selectedSeatDetails={event.seats.filter((_, index) => selectedSeats[index])} />
+    <button onClick={() => setIsBasketOpen(false)}>Kapat</button>
+  </div>
+)}
+
+
       </div>
       <br />
       <Footer />
