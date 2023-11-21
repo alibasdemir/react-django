@@ -4,12 +4,29 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { FaLocationDot } from "react-icons/fa6";
 import { MdDateRange } from "react-icons/md";
+import { AiOutlineSearch } from 'react-icons/ai';
+import { MdClear } from 'react-icons/md';
 
 function CategoryPage() {
   const { categoryId } = useParams();
   const [events, setEvents] = useState([]);
   const [categoryTitle, setCategoryTitle] = useState('');
   const [categoryImage, setCategoryImage] = useState('');
+  const [date, setDate] = useState({
+    start: "",
+    end: ""
+  });
+
+  const [filterEvents, setFilterEvents] = useState([]);
+  const [noEventsMessage, setNoEventsMessage] = useState('');
+
+  const handleDate = (e) => {
+    const { name, value } = e.target;
+    setDate(prevVal => ({
+      ...prevVal,
+      [name]: value
+    }));
+  };
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -34,73 +51,216 @@ function CategoryPage() {
     fetchEvents();
   }, [categoryId]);
 
+  useEffect(() => {
+    setFilterEvents(events);
+  }, [events]);
+
+  const handleFilter = (e) => {
+    const { id, type } = e.target;
+
+    let filteredEvents = events;
+
+    if (
+      (type === "location" && !filteredEvents.every((event) => event.location === id)) ||
+      (type === "owner" && !filteredEvents.every((event) => event.owner === id))
+    ) {
+      filteredEvents = filteredEvents.filter((item) => {
+        return type === "location" ? item.location === id : item.owner === id;
+      });
+    }
+
+    if (
+      id === "search" &&
+      ((!date.start && !date.end) || (date.start && date.end && date.start <= date.end))
+    ) {
+      filteredEvents = filteredEvents.filter(
+        (item) =>
+          item.start_date <= date.start && item.end_date >= date.start
+      );
+    }
+
+    setFilterEvents(filteredEvents);
+
+    if (filteredEvents.length === 0) {
+      setNoEventsMessage('Aranan kriterlere uygun etkinlik bulunamadı.');
+    } else {
+      setNoEventsMessage('');
+    }
+  };
+
+  const locationCount = filterEvents.reduce((acc, event) => {
+    const location = event.location;
+    acc[location] = (acc[location] || 0) + 1;
+    return acc;
+  }, {});
+
+  const ownerCount = filterEvents.reduce((acc, event) => {
+    const owner = event.owner;
+    acc[owner] = (acc[owner] || 0) + 1;
+    return acc;
+  }, {});
+
+  const handleClear = () => {
+    setFilterEvents(events);
+    setDate({
+      start: "",
+      end: ""
+    });
+    setNoEventsMessage('');
+  };
 
   return (
     <div>
       <Header />
-      <br />
-
-      <h2 className="text-center">{categoryTitle} ETKİNLİKLERİ</h2> {/*STİL VERİLEBİLİR...*/}
-      <br />
-      {categoryImage && (
-            <img
-              src={categoryImage}
-              alt={categoryTitle}
-              className="mx-auto rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105"
-              style={{ width: '1000px', height: '400px', borderRadius: '10px' }}
-            />
-          )}
-      <br />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 p-[4px] justify-center">
-        {events.map((event) => (
-          <div className="p-4" key={event.id}>
-            <div className="h-full bg-white rounded-2xl relative hover:shadow-2xl hover:shadow-indigo-400 cursor-pointer transform transition-transform ease-in-out duration-300 hover:scale-105">
-              <article className="w-full block">
-                  {event.eventImages.length > 0 && (
-                    <img
-                      src={event.eventImages[0].image}
-                      alt={event.category.title}
-                      className="w-full h-48 object-cover rounded-2xl"
-                    />
-                  )}
-                <div className="mt-1 text-center">
-                    <h2 className="pb-2 text-xl sm:text-2xl md:text-lg font-bold text-black pt-3">
-                      {event.name}
-                    </h2>
-
-                  <div className="flex flex-row pr-6 pl-6 justify-center" >
-                          <div >
-                            <FaLocationDot className="text-indigo-700" />
-                          </div>
-                          <div className="truncate">
-                            <p className="ml-2 text-gray-400 truncate text-sm">Etkinlik Yeri: {event.location}</p>
-                          </div>
-                        </div>
-
-                        <div className="border-b border-purple-200">
-                          <span>Biletinizi Tükenmeden Alın!</span>
-                        </div>
-
-                        <div className="flex items-center pr-6 pl-6 justify-center">
-                          <MdDateRange className="mr-2 text-gray-600 " />
-                          <p className="text-sm mt-3 text-gray-400 ">
-                            Başlangıç: {event.start_date} / Bitiş: {event.end_date}
-                          </p>
-                        </div>
-
-
-                  <div className="flex justify-center">
-                    <a href={`/events/${event.id}`} className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-10 w-48 bg-indigo-100 mb-3 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105">
-                      Etkinlik Detayı
-                    </a>
-                  </div>
-                </div>
-              </article>
+      <div className='p-4 sm:p-6 lg:p-10 bg-gray-100'>
+        <div className='ml-[1.5rem] mr-[1.5rem]'>
+          <div className='mb-6 lg:mb-12'>
+            <div className='border-b border-indigo-500 mb-2 p-4 '>
+              <h2 className="text-start font-bold text-blue-900">
+                {categoryTitle}
+              </h2>
             </div>
           </div>
-        ))}
-      </div>
 
+          <div className='flex flex-row justify-between mx-10'>
+            {categoryImage && (
+              <img
+                src={categoryImage}
+                alt={categoryTitle}
+                className="mx-auto rounded-lg shadow-lg  transition duration-300 transform hover:scale-105 "
+                style={{
+                  width: '700px',
+                  height: '400px',
+                  borderRadius: '10px',
+                  objectFit: 'cover',
+                  marginBottom: "75px"
+                }}
+              />
+            )}
+
+            <div className='w-auto h-auto mt-4'>
+              <div className='bg-gray-200 p-4 rounded-2xl mx-20' >
+                <div className='filter-div flex flex-col bg-white/75 rounded-2xl shadow-lg shadow-indigo-500/50'>
+                  <div className='owner flex flex-col  px-6 m-2 border-b border-indigo-300 py-3'>
+                    <h5 className="text-blue-600 flex items-center text-lg mb-2 pl-5">Tarih</h5>
+                    <div className='flex flex-row gap-2 items-center'>
+                      <p className="text-sm flex flex-col mb-2 pb-1 items-center border-b border-indigo-300 mr-3 ">
+                        <b>Başlangıç Tarihi: </b><input type="date" onChange={handleDate} name="start" value={date.start} />
+                      </p>
+                      <p className="text-sm flex flex-col mb-2 pb-1 items-center border-b border-indigo-300 mr-3">
+                        <b>Bitiş Tarihi:</b> <input type="date" onChange={handleDate} name="end" value={date.end} />
+                      </p>
+                      <div className='flex flex-col '>
+                        <button className='cursor-pointer flex flex-row justify-center items-center bg-blue-500 text-white rounded-md p-2 mb-3 hover:bg-indigo-700 transition-colors ease-in-out duration-300 hover:scale-105 text-center' id='search' onClick={handleFilter}>
+                          ARA
+                        </button>
+                        <div className='clear-btn '>
+                          <button
+                            className='bg-red-500 text-white rounded-md text-sm w-40 h-10 p-2  text-center flex justify-center items-center cursor-pointer hover:bg-red-700 transition-colors ease-in-out duration-300 hover:scale-105'
+                            onClick={handleClear}
+                          >
+                            <MdClear className=" text-lg mr-1" /> Filtreleri Temizle
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className='flex flex-row justify-evenly mb-2'>
+                    <div className='location flex flex-col px-2 m-2  items-center'>
+                      <h5 className="text-blue-600  text-base mb-2">Konum</h5>
+                      <ul className='p-0 flex flex-col gap-2'>
+                        {Object.entries(locationCount).map(([location, count]) => (
+                          <li
+                            className='cursor-pointer  text-xs p-1'
+                            onClick={() => handleFilter('location', location)}
+                            key={location}
+                          >
+                            {location} ({count})
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <span className='w-px h-auto bg-indigo-300'></span>
+
+                    <div className='owner flex flex-col pr-2 pl-2 m-2  items-center'>
+                      <h5 className="text-blue-600 flex  text-base mb-2">Mekan</h5>
+                      <ul className='p-0 flex flex-col gap-1'>
+                        {Object.entries(ownerCount).map(([owner, count]) => (
+                          <li
+                            className='cursor-pointer  text-xs p-1'
+                            onClick={() => handleFilter('owner', owner)}
+                            key={owner}
+                          >
+                            {owner} ({count})
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {filterEvents.length === 0 && (
+                    <div className="text-center text-red-500 font-bold">
+                      {noEventsMessage || 'Etkinlik bulunamadı.'}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 p-[4px] justify-center">
+            {filterEvents.map((event) => (
+              <div className="p-4 relative" key={event.id}>
+                <div className="h-full bg-white rounded-2xl relative hover:shadow-2xl hover:shadow-indigo-400 cursor-pointer transform transition-transform ease-in-out duration-300 hover:scale-105">
+                  <article className="w-full block">
+                    {event.eventImages.length > 0 && (
+                      <img
+                        src={event.eventImages[0].image}
+                        alt={event.category.title}
+                        className="w-full h-48 object-cover rounded-2xl"
+                      />
+                    )}
+                    <div className="mt-1 text-center">
+                      <h2 className="pb-2 text-xl sm:text-2xl md:text-lg font-bold text-black pt-3">
+                        {event.name}
+                      </h2>
+
+                      <div className="flex flex-row pr-6 pl-6 justify-center" >
+                        <div >
+                          <FaLocationDot className="text-indigo-700" />
+                        </div>
+                        <div className="truncate">
+                          <p className="ml-2 text-gray-400 truncate text-sm">{event.location}</p>
+                        </div>
+                      </div>
+
+                      <div className="absolute top-6 -right-5 bg-red-500 p-2 text-white font-bold rounded-md text-sm hover:scale-110  cursor-pointer hover:bg-red-700 transition-colors ease-in-out duration-300 animate-pulse origin-right rotate-12 ">
+                        <i>Biletinizi Tükenmeden Alın!</i>
+                      </div>
+
+                      <div className="flex flex-row items-center justify-center pr-6 pl-6 ">
+                        <MdDateRange className="mr-2 text-gray-600 mb-3" />
+                        <p className="text-sm  text-gray-400 ">
+                          {event.start_date} / {event.end_date}
+                        </p>
+                      </div>
+
+                      <div className="flex justify-center">
+                        <a href={`/events/${event.id}`} className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-10 w-48 bg-indigo-100 mb-3 mt-1 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105">
+                          Etkinlik Detayı
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       <Footer />
     </div>
   );
