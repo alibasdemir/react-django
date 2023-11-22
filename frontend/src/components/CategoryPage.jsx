@@ -6,6 +6,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdDateRange } from "react-icons/md";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdClear } from 'react-icons/md';
+import { BiSolidHome } from "react-icons/bi";
+import { Link } from 'react-router-dom';
 
 function CategoryPage() {
   const { categoryId } = useParams();
@@ -114,22 +116,29 @@ function CategoryPage() {
       <Header />
       <div className='p-4 sm:p-6 lg:p-10 bg-gray-100'>
         <div className='ml-[1.5rem] mr-[1.5rem]'>
-          <div className='mb-6 lg:mb-12'>
-            <div className='border-b border-indigo-500 mb-2 p-4 '>
+          <div className='mb-6 mt-3 lg:mb-12'>
+            <div className='flex flex-row justify-between items center border-b border-indigo-500 mb-1 px-4 '>
+
               <h2 className="text-start font-bold text-blue-900">
-                {categoryTitle}
+              {categoryTitle}
               </h2>
+              <div className='flex flex-row text-blue-900 pt-3'>
+                <BiSolidHome className='text-xl mr-1 text-blue-900'/>
+                <Link to="/" className='text-blue-900 no-underline mr-2 hover:text-blue-600'>Anasayfa</Link>
+                <span style={{width:"5px", height:"5px", borderRadius:"50%"}} className='bg-blue-900 mt-2.5'></span>
+                <p className='ml-2'>{categoryTitle}</p>
+              </div>
             </div>
           </div>
 
-          <div className='flex flex-row justify-between mx-10'>
+          <div className='flex flex-col justify-between '>
             {categoryImage && (
               <img
                 src={categoryImage}
                 alt={categoryTitle}
                 className="mx-auto rounded-lg shadow-lg  transition duration-300 transform hover:scale-105 "
                 style={{
-                  width: '700px',
+                  width: '800px',
                   height: '400px',
                   borderRadius: '10px',
                   objectFit: 'cover',
@@ -140,9 +149,9 @@ function CategoryPage() {
 
             <div className='w-auto h-auto mt-4'>
               <div className='bg-gray-200 p-4 rounded-2xl mx-20' >
-                <div className='filter-div flex flex-col bg-white/75 rounded-2xl shadow-lg shadow-indigo-500/50'>
-                  <div className='owner flex flex-col  px-6 m-2 border-b border-indigo-300 py-3'>
-                    <h5 className="text-blue-600 flex items-center text-lg mb-2 pl-5">Tarih</h5>
+                <div className='filter-div flex flex-row bg-white/75 rounded-2xl shadow-lg shadow-indigo-500/50 justify-around'>
+                  <div className='owner flex flex-col  px-6 m-2 border-r border-indigo-300 py-3'>
+                    <h5 className="text-blue-600 flex items-center text-lg mb-2 ">Tarih</h5>
                     <div className='flex flex-row gap-2 items-center'>
                       <p className="text-sm flex flex-col mb-2 pb-1 items-center border-b border-indigo-300 mr-3 ">
                         <b>Başlangıç Tarihi: </b><input type="date" onChange={handleDate} name="start" value={date.start} />
@@ -166,9 +175,8 @@ function CategoryPage() {
                     </div>
                   </div>
 
-                  <div className='flex flex-row justify-evenly mb-2'>
-                    <div className='location flex flex-col px-2 m-2  items-center'>
-                      <h5 className="text-blue-600  text-base mb-2">Konum</h5>
+                    <div className='location flex flex-col px-2 m-2  items-center '>
+                      <h5 className="text-blue-600  text-base mb-2 border-b border-indigo-400">Konum</h5>
                       <ul className='p-0 flex flex-col gap-2'>
                         {Object.entries(locationCount).map(([location, count]) => (
                           <li
@@ -181,10 +189,10 @@ function CategoryPage() {
                         ))}
                       </ul>
                     </div>
-                    <span className='w-px h-auto bg-indigo-300'></span>
+                    
 
                     <div className='owner flex flex-col pr-2 pl-2 m-2  items-center'>
-                      <h5 className="text-blue-600 flex  text-base mb-2">Mekan</h5>
+                      <h5 className="text-blue-600 flex  text-base mb-2 border-b border-indigo-400">Mekan</h5>
                       <ul className='p-0 flex flex-col gap-1'>
                         {Object.entries(ownerCount).map(([owner, count]) => (
                           <li
@@ -197,8 +205,7 @@ function CategoryPage() {
                         ))}
                       </ul>
                     </div>
-                  </div>
-
+                 
                   {filterEvents.length === 0 && (
                     <div className="text-center text-red-500 font-bold">
                       {noEventsMessage || 'Etkinlik bulunamadı.'}
