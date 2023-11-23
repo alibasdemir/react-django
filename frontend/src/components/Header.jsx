@@ -105,6 +105,11 @@ function Header() {
 
 
                         <NavDropdown title="ETKİNLİKLER" id="basic-nav-dropdown" style={{ color: 'white', fontSize: "16px", paddingTop: "4px" }} className='font-medium z-40 '>
+                            <NavDropdown.Item>
+                                <Link to="/categories/all" style={{ color: '#3730a3', textDecoration: 'none', fontSize: '16px' }} className='font-bold'>
+                                    <ul><li>TÜM ETKİNLİKLER</li></ul>
+                                </Link>
+                            </NavDropdown.Item>
                             {categories.map((category) => (
                                 <NavDropdown.Item  key={category.id}>
                                     <Link to={`/categories/${category.id}`} style={{ color: '#3730a3', textDecoration: 'none', fontSize: "16px", }} className='font-bold '><ul ><li>{category.title}</li></ul></Link>

@@ -36,11 +36,23 @@ function CategoryPage() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/categories/${categoryId}/events`);
+        let endpoint;
+        if (categoryId === 'all') {
+          const allCategory = {
+            title: 'TÜM ETKİNLİKLER',
+            img_url: 'https://idsb.tmgrup.com.tr/ly/uploads/images/2023/01/22/thumbs/800x531/252949.jpg'
+          };
+          setCategoryTitle(allCategory.title);
+          setCategoryImage(allCategory.img_url);
+          endpoint = 'http://localhost:8000/events'
+        } else {
+          endpoint = `http://localhost:8000/categories/${categoryId}/events`;
+        }
+        const response = await fetch(endpoint);
         if (response.ok) {
           const data = await response.json();
           setEvents(data);
-          if (data.length > 0) {
+          if (data.length > 0 && categoryId !== 'all') {
             const { category } = data[0];
             setCategoryTitle(category.title);
             setCategoryImage(category.img_url);

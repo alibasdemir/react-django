@@ -155,8 +155,12 @@ function EventDetails() {
             <Link to="/" className=' no-underline  hover:scale-105 '>
               <BiSolidHome className='text-2xl mr-1 text-rose-500 hover:text-rose-500' />
             </Link>
-            <RiArrowRightSLine className='text-2xl  text-indigo-500' />
-            <p className='text-indigo-500  no-underline'>Etkinlik</p>
+            <Link to="/categories/all" style={{ textDecoration: 'none' }}>
+              <div className="flex items-center">
+                <RiArrowRightSLine className='text-2xl text-indigo-500' />
+                <p className='text-indigo-500 no-underline'>Etkinlik</p>
+              </div>
+            </Link>
             <RiArrowRightSLine className='text-2xl  text-indigo-500' />
             <p className='ml-2 text-rose-500 font-bold '>{event.name}</p>
 
