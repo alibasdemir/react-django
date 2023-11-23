@@ -14,8 +14,8 @@ function Footer() {
 
   return (
     <footer className="bg-[#080243] to-indigo-900 text-white py-6 bottom-0">
-      <div className="flex justify-between mb-10 mx-24">
-        <div className="w-1/5 flex flex-col justify-center items-center pr-10 mt-4">
+      <div className="flex flex-col md:flex-row justify-between mb-10 mx-4 md:mx-24">
+        <div className="md:w-1/5 flex flex-col justify-center items-center pr-10 mt-4">
 
           <Link to="/" onClick={scrollToTop} className="text-3xl font-bold italic text-white mb-3 flex justify-center items-center no-underline">
             <span style={{ color: "#ff4500" }}>TICKET</span>
@@ -26,7 +26,7 @@ function Footer() {
           <p className='text-sm text-center text-gray-200'><em>Lorem ipsum dolor sit, amet conse ctetu radipisicing elit. Iste, repellendus!</em></p>
         </div>
 
-        <div className="w-1/7 pt-5">
+        <div className="md:w-1/7 pt-5">
           <h3 className="text-l font-bold mb-3 pb-2">Hakkımızda</h3>
           <ul>
             <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700 '>Biz Kimiz</a></li>
@@ -34,7 +34,7 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="w-1/7 pt-5">
+        <div className="md:w-1/7 pt-5">
           <h3 className="text-l font-bold mb-3 pb-2">Bağlantılar</h3>
           <ul>
             <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700'>Anasayfa</a></li>
@@ -43,7 +43,7 @@ function Footer() {
             <li><a href="#" className='text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700'>Yardım/SSS</a></li>
           </ul>
         </div>
-        <div className="w-1/7 pt-5">  {/* burada p etiketinde sanırım bootstrap default p mb değeri var ondan farklı gözüküyor. */}
+        <div className="md:w-1/7 pt-5">
           <h3 className="text-l font-bold mb-3 pb-2">İletişim</h3>
           <address className="text-slate-300 text-sm ">
             <p>Adres: 1234 Sokak No: 5</p>
@@ -52,7 +52,7 @@ function Footer() {
           </address>
         </div>
 
-        <div className="w-1/5 ">
+        <div className="md:w-1/5 ">
           <div className='flex flex-row mt-10'>
             <h3 className="text-gray-200 mt-2 font-bold text-l mb-5">Bizi Takip Edin</h3>
           </div>
@@ -97,12 +97,12 @@ function Footer() {
         </div>
       </div>
       <div className='h-px bg-blue-800'></div>
-      <div className='flex items-center pt-5 ml-20 mr-20 text-slate-300 text-sm'>
+      <div className='flex flex-col md:flex-row items-center pt-5 ml-4 md:ml-20 mr-4 md:mr-20 text-slate-300 text-sm'>
         <p className='hover:underline hover:text-purple-700' style={{ cursor: 'pointer' }}>Kullanım Şartları</p>
-        <div className='ml-5'></div>
+        <div className='md:ml-5'></div>
         <p className='hover:underline hover:text-purple-700' style={{ cursor: 'pointer' }}>Gizlilik politikası</p>
-        <div className='ml-5'></div>
-        <p className=' ml-auto'>©Copyright 2023 <Link to="/" onClick={scrollToTop} className="text-sm font-bold italic text-white mb-3 no-underline">
+        <div className='md:ml-5'></div>
+        <p className='md:ml-auto'>©Copyright 2023 <Link to="/" onClick={scrollToTop} className="text-sm font-bold italic text-white mb-3 no-underline">
           <span style={{ color: "#ff4500" }}>TICKET</span>
           <span style={{ color: "#a5b4fc", fontSize: "16px" }}>X</span>
         </Link></p>
