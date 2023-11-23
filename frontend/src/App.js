@@ -14,6 +14,9 @@ import Test2 from "./components/Test2";
 import { useSelector } from "react-redux";
 import CategoryPage from './components/CategoryPage';
 import EventDetails from "./components/Events/EventDetails";
+import FinishedEventsPage from "./components/Events/FinishedEventsPage";
+import SearchResults from "./components/SearchResults";
+
 
 function App() {
   const { user } = useSelector((state) => state);
@@ -23,7 +26,8 @@ function App() {
       <BrowserRouter>
         <ToastContainer hideProgressBar={true} newestOnTop={true} />
         <Routes>
-
+          <Route path="/search-results" element={<SearchResults />} />
+          <Route path="/finishedevents" element={<FinishedEventsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/logout" element={<Logout user={user} />} />
@@ -35,8 +39,6 @@ function App() {
           <Route path="/test2" index element={<Test2 />} />
           <Route path="/categories/:categoryId" element={<CategoryPage />} />
           <Route path="/events/:eventId" element={<EventDetails />} />
-
-
         </Routes>
       </BrowserRouter>
     </div>
