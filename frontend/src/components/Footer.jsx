@@ -14,7 +14,7 @@ function Footer() {
 
   return (
     <footer className="bg-[#080243] to-indigo-900 text-white py-6 bottom-0">
-      <div className="flex flex-col md:flex-row justify-between mb-10 mx-4 md:mx-24">
+      <div className="flex flex-col md:flex-row justify-between mb-10 mx-10 md:mx-24">
         <div className="md:w-1/5 flex flex-col justify-center items-center pr-10 mt-4">
 
           <Link to="/" onClick={scrollToTop} className="text-3xl font-bold italic text-white mb-3 flex justify-center items-center no-underline">
