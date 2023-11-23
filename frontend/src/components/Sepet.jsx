@@ -52,8 +52,8 @@ function Sepet({ selectedSeatDetails }) {
           {totalPrice} TL
         </p>
       </div>
-      <div>
-      <div>
+      {totalSeats > 0 && (
+        <div>
           <button
             onClick={handlePayment}
             className='bg-indigo-500 py-2 px-4 rounded-full text-white hover:scale-105 hover:ease-out transition duration-500 absolute right-3'
@@ -61,9 +61,9 @@ function Sepet({ selectedSeatDetails }) {
             Ödeme Yap ({totalPrice} TL)
           </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
- 
+
 export default Sepet;
