@@ -114,6 +114,7 @@ const Events = () => {
               </div>
             );
           })}
+       
       </div>
       <ShareModal
         isOpen={isShareModalOpen}
