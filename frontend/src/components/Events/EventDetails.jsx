@@ -138,7 +138,7 @@ function EventDetails() {
       <Header />
       <div className='px-16 py-10 bg-gray-100'>
         <div>
-          <div className='eventHeader text-center flex flex-row pt-3 '>
+          <div className='eventHeader bg-white rounded-full px-10 text-center flex flex-row pt-3 '>
 
             <Link to="/" className=' no-underline  hover:scale-105 '>
               <BiSolidHome className='text-2xl mr-1 text-rose-500 hover:text-rose-500' />
