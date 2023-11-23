@@ -33,7 +33,10 @@ const Events = () => {
     setIsShareModalOpen(false);
   };
 
-
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('tr-TR', options);
+  };
   return (
     <div className="h-full bg-gray-100 p-20" >
       <div id="events" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 p-[4px] justify-center  ">
@@ -81,10 +84,10 @@ const Events = () => {
                         </div>
 
                         <div className="flex items-center pr-6 pl-6">
-                          <MdDateRange className="mr-2 text-gray-600 " />
+                          <MdDateRange className="mr-2 text-red-600 " />
                           <p className="text-sm mt-3 text-gray-400 ">
                             {/* Thu, Nov 2, 2023 8:00 PM +03 */}
-                            {event.start_date} / {event.end_date}
+                            {formatDate(event.start_date)} / {formatDate(event.end_date)}
                           </p>
                         </div>
 
@@ -96,7 +99,7 @@ const Events = () => {
                           {event.description}
                         </p> */}
 
-                        <Link to="/" className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-12 mr-14 ml-6  bg-indigo-100 mb-3 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105 hover:text-scale-105">
+                        <Link to={`/events/${event.id}`}  className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-12 mr-14 ml-6  bg-indigo-100 mb-3 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105 hover:text-scale-105">
                           Etkinlik Detayı
                         </Link>
                       </Link>
