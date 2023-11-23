@@ -91,7 +91,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="flex items-center justify-center pt-10 bg-gray-100 pb-10">
+    <div className="flex items-center justify-center pt-10 bg-gray-100 pb-10 mt-1">
     <div className="relative w-full max-w-screen-lg">
       <SlickSlider ref={sliderRef} {...settings}>
         {slides.map((slide, index) => (
