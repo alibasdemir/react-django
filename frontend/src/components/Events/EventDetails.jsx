@@ -126,13 +126,8 @@ function EventDetails() {
   };
 
   const today = new Date();
-  const formattedDate = today.toLocaleDateString('tr-TR', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
+  const endDate = new Date(event.end_date);
+  const isEventExpired = today >= endDate;
 
   const uniqueCategories = {};
 
@@ -203,16 +198,13 @@ function EventDetails() {
               <p className='text-gray-500 '> {event.description}</p>
             </div>
 
-            {formattedDate < event.end_date ? (
-              <div className="relative">
-                <p><span className='font-semibold'>Gösteri devam ediyor mu?:</span> Evet</p>
-                <div className="absolute top-0 -right-5 mt-2 mr-2 bg-purple-500 p-2 text-white font-bold rounded-md text-sm hover:scale-110 cursor-pointer hover:bg-indigo-500 transition-colors ease-in-out duration-500 animate-pulse origin-right rotate-12  ">
-                  <i>Çabuk ol, biletler tükenmek üzere!</i>
-                </div>
-              </div>
-            ) : (
+            {isEventExpired ? (
               <div className="absolute top-0 -right-5 mt-2 mr-2 bg-red-500 p-2 text-white font-bold rounded-md text-sm hover:scale-110 cursor-pointer hover:bg-red-500 transition-colors ease-in-out duration-500 animate-pulse origin-right rotate-12">
                 <i>Üzgünüz, bu etkinliğin tarihi geçti!</i>
+              </div>
+            ) : (
+              <div className="absolute top-0 -right-5 mt-2 mr-2 bg-purple-500 p-2 text-white font-bold rounded-md text-sm hover:scale-110 cursor-pointer hover:bg-indigo-500 transition-colors ease-in-out duration-500 animate-pulse origin-right rotate-12">
+                <i>Çabuk ol, biletler tükenmek üzere!</i>
               </div>
             )}
 
