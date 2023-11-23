@@ -7,14 +7,12 @@ import ShareModal from '../components/Events/ShareModal'
 import photo1 from '../components/images/photo1.jpg';
 import photo3 from '../components/images/photo3.jpg';
 import FinishedEvents from '../components/Events/FinishedEvents';
-import DiscoverBar from '../components/DiscoverBar';
 
 const Home = () => {
 
   return (
     <div>
       <Header />
-      <DiscoverBar/>
       <Slider />
       <img src={photo3} alt="Event 1" className="w-screen pt-14 pl-[64px] pr-[64px] pb-12 " />
       <FinishedEvents/>
