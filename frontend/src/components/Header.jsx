@@ -6,9 +6,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaUser } from "react-icons/fa6";
 import { LuLogIn } from "react-icons/lu";
-import { RiShoppingBasketFill } from "react-icons/ri";
 import { Dropdown } from 'react-bootstrap';
-import userprofile from '../components/images/userprofile.svg'
+import userprofile from '../components/images/userprofile.svg';
 import { LuPartyPopper } from "react-icons/lu";
 
 function Header() {
@@ -20,7 +19,6 @@ function Header() {
     const openCart = () => {
         setCartOpen(!cartOpen);
     };
-
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -50,7 +48,7 @@ function Header() {
     }, []);
 
     useEffect(() => {
-        console.log("User:", user); // Kullanıcı objesini konsolda göster
+        console.log("User:", user);
     }, [user]);
 
     const handleLogout = () => {
@@ -63,8 +61,8 @@ function Header() {
         } else {
             navigate("/");
             toast.success('Çıkış yapıldı');
-        };
-    }
+        }
+    };
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -80,6 +78,8 @@ function Header() {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Search Results:', data);
+
+                navigate('/search-results', { state: { searchResults: data } });
             } else {
                 console.error('An error occurred during search.');
             }
