@@ -133,6 +133,18 @@ function EventDetails() {
     day: 'numeric'
   });
 
+
+  const uniqueCategories = {};
+
+  event.seats.forEach((seat) => {
+    const category = seat.seatCategory.seatClass;
+    const price = seat.seatCategory.seatPrice;
+
+    if (!uniqueCategories[category]) {
+      uniqueCategories[category] = price;
+    }
+  });
+
   return (
     <div className="">
       <Header />
@@ -252,18 +264,12 @@ function EventDetails() {
                         Bilet Fiyatları
                       </Dropdown.Toggle>
                       <Dropdown.Menu style={{ fontSize: "12px", boxShadow: '0 4px 8px #cbd5e1' }}>
-                        <Dropdown.ItemText className='flex flex-col border-b border-gray-100'>
-                          <span className='font-extrabold'>100,00 TL<br /></span>
-                          3. Kategori
-                        </Dropdown.ItemText>
-                        <Dropdown.ItemText className='flex flex-col border-b border-gray-100'>
-                          <span className='font-extrabold'>200,00 TL<br /></span>
-                          2. Kategori
-                        </Dropdown.ItemText>
-                        <Dropdown.ItemText className='flex flex-col '>
-                          <span className='font-extrabold'>300,00 TL<br /></span>
-                          1. Kategori
-                        </Dropdown.ItemText>
+                        {Object.entries(uniqueCategories).map(([category, price]) => (
+                          <Dropdown.ItemText key={category} className='flex flex-col border-b border-gray-100'>
+                            <span className='font-extrabold'>{price} TL<br /></span>
+                            {category} Kategori
+                          </Dropdown.ItemText>
+                        ))}
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
@@ -282,7 +288,7 @@ function EventDetails() {
                       className='hover:scale-105'
                     >
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <div style={{ fontSize: '12px' }}>{seat.seatCategory.seatClass}{seat.seatNumber}</div>
+                        <div style={{ fontSize: '12px', color: 'white', fontWeight: 'bold' }}>{seat.seatCategory.seatClass}{seat.seatNumber}</div>
                         {/* <div style={{}}>{seat.seatCategory.seatPrice} TL</div> */}
                       </div>
                     </div>
