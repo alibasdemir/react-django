@@ -78,7 +78,7 @@ const RegisterPage = () => {
 
   return (
     <div className="flex flex-row">
-      <div className="w-[50%] ">
+      <div className="w-[50%] hidden lg:block">
 
         <Slider {...sliderSettings}>
           <div className="relative">
@@ -138,7 +138,7 @@ const RegisterPage = () => {
         </Link>
         </div>
         <div className="container text-center mx-auto max-w-md w-screen">
-          <div className="ml-32 mr-32">
+          <div className="lg:ml-32 lg:mr-32 lg:mb-0 mb-32">
           <h1 className="text-2xl font-semibold text-[#111826]">
             Hesap Oluştur
           </h1>
