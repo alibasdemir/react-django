@@ -6,7 +6,7 @@ import ShareModal from "./ShareModal";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdDateRange } from "react-icons/md";
 
-const Events = () => {
+const Events = ({ events }) => {
   const [eventData, setEventData] = useState(null);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -40,8 +40,8 @@ const Events = () => {
   return (
     <div className="h-full bg-gray-100 p-20" >
       <div id="events" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 p-[4px] justify-center  ">
-        {eventData &&
-          eventData.map((event) => {
+        {events &&
+          events.map((event) => {
             const defaultImageIndex = Math.floor(
               Math.random() * event.eventImages.length
             );
