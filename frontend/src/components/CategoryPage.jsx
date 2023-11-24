@@ -228,7 +228,13 @@ function CategoryPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 p-[4px] justify-center">
             {filterEvents.map((event) => (
-              <div className="p-4 relative" key={event.id}>
+               <div
+               className="p-4 relative"
+               style={{
+                 filter: new Date(event.end_date) < new Date() ? 'grayscale(100%)' : 'none',
+               }}
+               key={event.id}
+             >
                 <div className="h-full bg-white rounded-2xl relative hover:shadow-2xl hover:shadow-indigo-400 cursor-pointer transform transition-transform ease-in-out duration-300 hover:scale-105">
                   <article className="w-full block">
                     {event.eventImages.length > 0 && (
@@ -252,9 +258,15 @@ function CategoryPage() {
                         </div>
                       </div>
 
-                      <div className="absolute top-6 -right-5 bg-red-500 p-2 text-white font-bold rounded-md text-sm hover:scale-110  cursor-pointer hover:bg-red-700 transition-colors ease-in-out duration-300 animate-pulse origin-right rotate-12 ">
-                        <i>Biletinizi Tükenmeden Alın!</i>
-                      </div>
+                      {new Date(event.end_date) < new Date() ? (
+                        <div className="absolute top-6 -right-5 bg-red-500 p-2 text-white font-bold rounded-md text-sm hover:scale-110  cursor-pointer hover:bg-red-700 transition-colors ease-in-out duration-300 animate-pulse origin-right rotate-12 ">
+                          <i>Bu etkinlik sona erdi</i>
+                        </div>
+                      ) : (
+                        <div className="absolute top-6 -right-5 bg-green-500 p-2 text-white font-bold rounded-md text-sm hover:scale-110 cursor-pointer hover:bg-green-700 transition-colors ease-in-out duration-300 animate-pulse origin-right rotate-12">
+                          <i>Biletinizi Tükenmeden Alın!</i>
+                        </div>
+                      )}
 
                       <div className="flex flex-row items-center justify-center pr-6 pl-6 ">
                         <MdDateRange className="mr-2 text-gray-600 mb-3" />
@@ -263,18 +275,23 @@ function CategoryPage() {
                         </p>
                       </div>
 
-                      <div className="flex justify-center mr-2">
-                        <a href={`/events/${event.id}`} className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-10 w-48 bg-indigo-100 mb-3 mt-1 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105 ">
-                          Etkinlik Detayı
-                        </a>
-                        
-                      </div>
-                       <div className="text-center absolute bottom-5 right-1.5 border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 hover:scale-110">
-                    <FaShare onClick={() => openShareModal(event)} />
-                  </div>
-                    </div>
-                   
+                      <div className="flex justify-center items-center">
+                        {new Date(event.end_date) < new Date() ? (
+                        <div className="text-center border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 pointer-events-none">
+                          <span className="text-white font-bold">Etkinlik Bitti</span>
+                        </div>
+                      ) : (
+                      <a href={`/events/${event.id}`} className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-10 w-48 bg-indigo-100 mb-3 mt-1 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105 ">
+                        Etkinlik Detayı
+                      </a>
+                      )}
 
+                      <div className="text-center border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 ml-2" onClick={() => new Date(event.end_date) >= new Date() && openShareModal(event)}>
+                        <FaShare className={`text-white cursor-pointer ${new Date(event.end_date) < new Date() ? 'pointer-events-none' : ''}`} />
+                      </div>
+                      </div>
+
+                    </div>
           
                   </article>
                 </div>
