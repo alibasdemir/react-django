@@ -77,20 +77,18 @@ function CategoryPage() {
   }, [events])
   
   // Function to manage all filter events regarding their type and id
-  const handleFilter = (e) => {
-    const {id, type} = e.target
-    if(type === "location" && !filterEvents.every(event => event.location === id)
-    || (type === "owner" && !filterEvents.every(event => event.owner === id)))
-    {
-      setFilterEvents(events.filter(item  => {
-        return type === "location" ? item.location === id : item.owner === id
-      }))
+  const handleFilter = (type, id) => {
+    if ((type === "location" && !filterEvents.every(event => event.location === id)) ||
+      (type === "owner" && !filterEvents.every(event => event.owner === id))) {
+      setFilterEvents(events.filter(item => {
+        return type === "location" ? item.location === id : item.owner === id;
+      }));
     }
-    if(id === "search" && ((date.start && date.end) && date.start <= date.end)){
-      setFilterEvents(events.filter(item => (item.start_date <= date.start && item.end_date >= date.start) || 
-        (item.start_date >= date.start && item.start_date <= date.end)))
+    if (id === "search" && ((date.start && date.end) && date.start <= date.end)) {
+      setFilterEvents(events.filter(item => (item.start_date <= date.start && item.end_date >= date.start) ||
+        (item.start_date >= date.start && item.start_date <= date.end)));
     }
-  }
+  };
 
   //Location list from all object to list them on page according to filterEvents
   const locationCount = filterEvents.reduce((acc, event) => {
