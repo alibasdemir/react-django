@@ -87,11 +87,11 @@ const LoginPage = () => {
   return (
 
     <div
-      className="flex-1 flex items-center justify-center h-screen"
+      className="flex-1 flex items-center justify-center h-full"
       data-aos="fade-up"
       data-aos-once="true"
     >
-      <div className="w-[50%] ">
+      <div className="hidden lg:block w-[50%]">
 
         <Slider {...sliderSettings}>
           <div className="relative">
@@ -147,7 +147,7 @@ const LoginPage = () => {
     <span style={{ color: "#a5b4fc", fontSize:"56px" }}>X</span>
         </Link>
       </div>
-        <div className="ml-32 mr-32">
+        <div className="lg:ml-32 lg:mr-32 lg:mt-0 mt-40">
         <h1 className="text-2xl font-semibold text-[#111826]">
           Giriş Yap
         </h1>
