@@ -138,18 +138,18 @@ function EventDetails() {
     <>
       <Header />
       <div className="px-16 py-10 bg-gray-100 w-screen">
-        <div className="eventHeader bg-white rounded-full lg:px-10 px-1 text-center flex flex-row pt-3 w-full">
-          <Link to="/" className=" no-underline  hover:scale-105 ">
-            <BiSolidHome className="text-2xl mr-1 text-rose-500 hover:text-rose-500" />
+        <div className="eventHeader bg-white rounded-full lg:px-10 px-10 py-3 flex flex-row w-full items-center">
+          <Link to="/" className=" no-underline  hover:scale-105  ">
+            <BiSolidHome className="text-2xl mr-1 text-rose-500 mb-1 hover:text-rose-500" />
           </Link>
           <Link to="/categories/all" style={{ textDecoration: "none" }}>
-            <div className="flex items-center">
+            <div className="flex">
               <RiArrowRightSLine className="text-2xl text-indigo-500" />
-              <p className="text-indigo-500 no-underline">Etkinlik</p>
+              <span className="text-indigo-500 no-underline">Etkinlik</span>
             </div>
           </Link>
           <RiArrowRightSLine className="text-2xl  text-indigo-500" />
-          <p className="ml-2 text-rose-500 font-bold ">{event.name}</p>
+          <span className="ml-1 text-rose-500 font-bold">{event.name}</span>
         </div>
 
         <div className="p-5 object-cover w-auto">
@@ -186,7 +186,7 @@ function EventDetails() {
           </div>
 
           <div
-            className="bg-gray-100 px-4 rounded-2xl pt-4 pb-2 lg:mx-12 lg:h-auto lg:w-auto h-72 w-36 overflow-scroll"
+            className="bg-gray-100 px-4 rounded-2xl pt-4 pb-2 w-auto lg:mx-12 lg:h-auto lg:w-auto h-72 overflow-scroll"
             style={{ boxShadow: "0 4px 8px #e0e7ff" }}
           >
             <p className="text-sm md:text-base">
@@ -213,7 +213,7 @@ function EventDetails() {
             className="bg-white p-10 lg:ml-20 my-10 lg:w-auto w-full rounded-2xl relative"
             style={{ boxShadow: "0 4px 8px #cbd5e1" }}
           >
-            <div>
+            <div className="justify-center flex">
               <h3 className="text-indigo-500">Etkinliğe Dair</h3>
             </div>
             <div
