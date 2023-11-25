@@ -26,10 +26,10 @@ function CategoryPage() {
 
   //function for managing date state
   const handleDate = (e) => {
-    const {name, value} = e.target 
+    const { name, value } = e.target
     setDate(preVal => ({
-        ...preVal,
-        [name]: value
+      ...preVal,
+      [name]: value
     }))
   }
 
@@ -75,7 +75,7 @@ function CategoryPage() {
   useEffect(() => {
     setFilterEvents(events)
   }, [events])
-  
+
   // Function to manage all filter events regarding their type and id
   const handleFilter = (type, id) => {
     if ((type === "location" && !filterEvents.every(event => event.location === id)) ||
@@ -97,26 +97,30 @@ function CategoryPage() {
     return acc;
   }, {});
 
-//Owner list from all object to list them on page according to filterEvents
+  //Owner list from all object to list them on page according to filterEvents
   const ownerCount = filterEvents.reduce((acc, event) => {
     const owner = event.owner;
     acc[owner] = (acc[owner] || 0) + 1;
     return acc;
   }, {});
 
-//Clear function to clear all filters
+  //Clear function to clear all filters
   const handleClear = () => {
     setFilterEvents(events)
     setDate({
-    start: "",
-    end: ""
+      start: "",
+      end: ""
     })
   }
 
   const openShareModal = (event) => {
-    setSelectedEvent(event);
-    setIsShareModalOpen(true);
+    // Check if the event has not ended
+    if (new Date(event.end_date) >= new Date()) {
+      setSelectedEvent(event);
+      setIsShareModalOpen(true);
+    }
   };
+
 
   const closeShareModal = () => {
     setSelectedEvent(null);
@@ -132,12 +136,13 @@ function CategoryPage() {
             <div className='flex flex-row justify-between items center border-b border-indigo-500 mb-1 px-4 '>
 
               <h2 className="text-start font-bold text-blue-900">
-              {categoryTitle}
+                {categoryTitle}
               </h2>
               <div className='flex flex-row text-blue-900 pt-3'>
-                <BiSolidHome className='text-xl mr-1 text-blue-900'/>
+                <Link to={"/"}><BiSolidHome className='text-xl mr-1 text-blue-900 hover:scale-105' /></Link>
+                
                 <Link to="/" className='text-blue-900 no-underline mr-2 hover:text-blue-600'>Anasayfa</Link>
-                <span style={{width:"5px", height:"5px", borderRadius:"50%"}} className='bg-blue-900 mt-2.5'></span>
+                <span style={{ width: "5px", height: "5px", borderRadius: "50%" }} className='bg-blue-900 mt-2.5'></span>
                 <p className='ml-2'>{categoryTitle}</p>
               </div>
             </div>
@@ -159,23 +164,26 @@ function CategoryPage() {
               />
             )}
 
-            <div className='w-auto h-auto mt-4'>
+            <div className='w-fit h-fit mt-4 my-10 mx-auto'>
               <div className='bg-gray-200 p-4 rounded-2xl mx-20' >
-                <div className='filter-div flex flex-row bg-white/75 rounded-2xl shadow-lg shadow-indigo-500/50 justify-around'>
-                  <div className='owner flex flex-col  px-6 m-2 border-r border-indigo-300 py-3'>
-                    <h5 className="text-blue-600 flex items-center text-lg mb-2 ">Tarih</h5>
-                    <div className='flex flex-row gap-2 items-center'>
-                      <p className="text-sm flex flex-col mb-2 pb-1 items-center border-b border-indigo-300 mr-3 ">
+                <div className='filter-div flex flex-row bg-white/75 rounded-2xl shadow-lg shadow-indigo-500/50 '>
+                  <div className='border-r border-indigo-300'>
+                  <div className='owner flex flex-col  px-6 m-2 items-center py-3'>
+                    <h5 className="text-blue-600 flex items-center text-lg mb-3 ">Tarih</h5>
+                    <div className='flex flex-col gap-2 items-center'>
+                     <div className='flex flex-row gap-3'>
+                     <p className="text-sm flex flex-col mb-2 pb-1 items-center border-b border-indigo-300 mr-3 gap-2">
                         <b>Başlangıç Tarihi: </b><input type="date" onChange={handleDate} name="start" value={date.start} />
                       </p>
-                      <p className="text-sm flex flex-col mb-2 pb-1 items-center border-b border-indigo-300 mr-3">
+                      <p className="text-sm flex flex-col mb-2 pb-1 items-center border-b border-indigo-300 ml-3 gap-2">
                         <b>Bitiş Tarihi:</b> <input type="date" onChange={handleDate} name="end" value={date.end} />
                       </p>
-                      <div className='flex flex-col '>
+                     </div>
+                      <div className='flex flex-col mt-3'>
                         <button className='cursor-pointer flex flex-row justify-center items-center bg-blue-500 text-white rounded-md p-2 mb-3 hover:bg-indigo-700 transition-colors ease-in-out duration-300 hover:scale-105 text-center' id='search' onClick={handleFilter}>
                           ARA
                         </button>
-                        <div className='clear-btn '>
+                        <div className='clear-btn'>
                           <button
                             className='bg-red-500 text-white rounded-md text-sm w-40 h-10 p-2  text-center flex justify-center items-center cursor-pointer hover:bg-red-700 transition-colors ease-in-out duration-300 hover:scale-105'
                             onClick={handleClear}
@@ -186,37 +194,40 @@ function CategoryPage() {
                       </div>
                     </div>
                   </div>
+                  </div>
 
-                    <div className='location flex flex-col px-2 m-2  items-center '>
-                      <h5 className="text-blue-600  text-base mb-2 border-b border-indigo-400">Konum</h5>
-                      <ul className='p-0 flex flex-col gap-2'>
-                        {Object.entries(locationCount).map(([location, count]) => (
-                          <li
-                            className='cursor-pointer  text-xs p-1'
-                            onClick={() => handleFilter('location', location)}
-                            key={location}
-                          >
-                            {location} ({count})
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
+               <div className='border-r flex  border-indigo-300 '>
+               <div className='location flex flex-col px-2 my-3 mx-20 items-center '>
+                    <h5 className="text-blue-600  text-lg mb-2 border-b border-indigo-400">Konum</h5>
+                    <ul className='p-0 flex flex-col gap-1 list-disc'>
+                      {Object.entries(locationCount).map(([location, count]) => (
+                        <li
+                          className='cursor-pointer  text-xs p-1'
+                          onClick={() => handleFilter('location', location)}
+                          key={location}
+                        >
+                          {location} ({count})
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+               </div>
 
-                    <div className='owner flex flex-col pr-2 pl-2 m-2  items-center'>
-                      <h5 className="text-blue-600 flex  text-base mb-2 border-b border-indigo-400">Mekan</h5>
-                      <ul className='p-0 flex flex-col gap-1'>
-                        {Object.entries(ownerCount).map(([owner, count]) => (
-                          <li
-                            className='cursor-pointer  text-xs p-1'
-                            onClick={() => handleFilter('owner', owner)}
-                            key={owner}
-                          >
-                            {owner} ({count})
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+
+                  <div className='owner flex flex-col pr-2 pl-2 my-3 mx-20  items-center '>
+                    <h5 className="text-blue-600 flex  text-lg mb-2 border-b border-indigo-400">Mekan</h5>
+                    <ul className='p-0 flex flex-col gap-1 list-disc'>
+                      {Object.entries(ownerCount).map(([owner, count]) => (
+                        <li
+                          className='cursor-pointer  text-xs p-1'
+                          onClick={() => handleFilter('owner', owner)}
+                          key={owner}
+                        >
+                          {owner} ({count})
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -226,13 +237,13 @@ function CategoryPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 p-[4px] justify-center">
             {filterEvents.map((event) => (
-               <div
-               className="p-4 relative"
-               style={{
-                 filter: new Date(event.end_date) < new Date() ? 'grayscale(100%)' : 'none',
-               }}
-               key={event.id}
-             >
+              <div
+                className="p-4 relative"
+                style={{
+                  filter: new Date(event.end_date) < new Date() ? 'grayscale(100%)' : 'none',
+                }}
+                key={event.id}
+              >
                 <div className="h-full bg-white rounded-2xl relative hover:shadow-2xl hover:shadow-indigo-400 cursor-pointer transform transition-transform ease-in-out duration-300 hover:scale-105">
                   <article className="w-full block">
                     {event.eventImages.length > 0 && (
@@ -273,34 +284,36 @@ function CategoryPage() {
                         </p>
                       </div>
 
-                      <div className="flex justify-center items-center">
+                      <div className="flex justify-center items-center ">
                         {new Date(event.end_date) < new Date() ? (
-                        <div className="text-center border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 pointer-events-none">
-                          <span className="text-white font-bold">Etkinlik Bitti</span>
-                        </div>
-                      ) : (
-                      <a href={`/events/${event.id}`} className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-10 w-48 bg-indigo-100 mb-3 mt-1 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105 ">
-                        Etkinlik Detayı
-                      </a>
-                      )}
+                          <div className="text-center border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 pointer-events-none">
+                            <span className="text-white font-bold">Etkinlik Bitti</span>
+                          </div>
+                        ) : (
+                          <a href={`/events/${event.id}`} className="text-indigo-800 no-underline text-md rounded-3xl font-bold h-10 w-48 bg-indigo-100 mb-3 mt-1 flex flex-row justify-center items-center hover:bg-indigo-500 hover:ease-out duration-500 hover:text-white hover:scale-105 ">
+                            Etkinlik Detayı
+                          </a>
+                        )}
 
-                      <div className="text-center border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 ml-2" onClick={() => new Date(event.end_date) >= new Date() && openShareModal(event)}>
-                        <FaShare className={`text-white cursor-pointer ${new Date(event.end_date) < new Date() ? 'pointer-events-none' : ''}`} />
-                      </div>
+                        {new Date(event.end_date) >= new Date() && (
+                          <div className="text-center border rounded-full p-2 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 ml-3 hover:scale-105 mb-2.5 " onClick={() => openShareModal(event)}>
+                            <FaShare className={`text-white cursor-pointer`} />
+                          </div>
+                        )}
                       </div>
 
                     </div>
-          
+
                   </article>
                 </div>
               </div>
             ))}
           </div>
           <ShareModal
-        isOpen={isShareModalOpen}
-        onClose={closeShareModal}
-        event={selectedEvent}
-      />
+            isOpen={isShareModalOpen}
+            onClose={closeShareModal}
+            event={selectedEvent}
+          />
         </div>
       </div>
       <Footer />
