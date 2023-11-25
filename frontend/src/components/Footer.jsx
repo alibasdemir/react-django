@@ -174,19 +174,19 @@ function Footer() {
       </div>
       <div className="h-px bg-blue-800"></div>
       <div className="flex flex-col md:flex-row items-center pt-5 mx-4 md:mx-24 text-slate-300 text-sm md:space-y-0">
-        <p
+        <span
           className="hover:underline hover:text-purple-700"
           style={{ cursor: "pointer" }}
         >
           Kullanım Şartları
-        </p>
+        </span>
         <div className="md:ml-5"></div>
-        <p
+        <span
           className="hover:underline hover:text-purple-700"
           style={{ cursor: "pointer" }}
         >
           Gizlilik politikası
-        </p>
+        </span>
         <div className="md:ml-5"></div>
         <p className="md:ml-auto">
           ©Copyright 2023{" "}
