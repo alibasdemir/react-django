@@ -173,7 +173,7 @@ function Footer() {
         </div>
       </div>
       <div className="h-px bg-blue-800"></div>
-      <div className="flex flex-col md:flex-row items-center pt-5 mx-4 md:mx-24 text-slate-300 text-sm space-y-5 md:space-y-0">
+      <div className="flex flex-col md:flex-row items-center pt-5 mx-4 md:mx-24 text-slate-300 text-sm md:space-y-0">
         <p
           className="hover:underline hover:text-purple-700"
           style={{ cursor: "pointer" }}
