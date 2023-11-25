@@ -37,20 +37,20 @@ function Footer() {
           <h3 className="text-l font-bold mb-3 pb-2">Hakkımızda</h3>
           <ul>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700 "
               >
                 Biz Kimiz
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700"
               >
                 Kurum Politikamız
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -59,36 +59,36 @@ function Footer() {
           <h3 className="text-l font-bold mb-3 pb-2">Bağlantılar</h3>
           <ul>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700"
               >
                 Anasayfa
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700"
               >
                 Etkinlikler
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700"
               >
                 Biletler
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-slate-300 text-sm mb-1 no-underline hover:underline hover:text-purple-700"
               >
                 Yardım/SSS
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -98,16 +98,16 @@ function Footer() {
             <p>Adres: 1234 Sokak No: 5</p>
             <p>
               Telefon:{" "}
-              <a href="tel:(123) 456-7890" className="text-purple-500">
+              <Link href="tel:(123) 456-7890" className="text-purple-500">
                 {" "}
                 (123) 456-7890
-              </a>
+              </Link>
             </p>
             <p>
               E-posta:{" "}
-              <a href="mailto:info@example.com" className="text-purple-500">
+              <Link href="mailto:info@example.com" className="text-purple-500">
                 info@example.com
-              </a>
+              </Link>
             </p>
           </address>
         </div>
@@ -121,52 +121,52 @@ function Footer() {
           <div className="flex flex-row justify-center space-x-4 mx-auto max-w-xs md:max-w-full">
             <div className="relative">
               <div className="w-10 h-10 flex items-center justify-center bg-[#3b5998] rounded-full transform transition-transform ease-in-out hover:scale-110 hover:shadow-lg">
-                <a href="#">
+                <Link href="#">
                   <FaFacebookF className=" w-6 h-6 text-white" />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="relative">
               <div className="w-10 h-10 flex items-center justify-center bg-[#E1306C] rounded-full transform transition-transform ease-in-out hover:scale-110 hover:shadow-lg">
-                <a href="#">
+                <Link href="#">
                   <BsInstagram className="w-6 h-6 text-white" />
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="relative">
               <div className="w-10 h-10 flex items-center justify-center bg-[#bb0000] rounded-full transform transition-transform ease-in-out hover:scale-110 hover:shadow-lg">
-                <a href="#">
+                <Link href="#">
                   <AiOutlineYoutube className="w-6 h-6 text-white" />
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="relative">
               <div className="w-10 h-10 flex items-center justify-center bg-stone-700 rounded-full transform transition-transform ease-in-out hover:scale-110 hover:shadow-lg">
-                <a href="#">
+                <Link href="#">
                   <RiTwitterXFill className="w-6 h-6 text-white" />
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="relative">
               <div className="w-10 h-10 flex items-center justify-center bg-[#2ebd59] rounded-full transform transition-transform ease-in-out hover:scale-110 hover:shadow-lg">
-                <a href="#">
+                <Link href="#">
                   <BsSpotify className="w-6 h-6 text-white" />
-                </a>
+                </Link>
               </div>
             </div>
 
             <div className="relative">
               <div className="w-10 h-10 flex items-center justify-center bg-[#24292e] rounded-full transform transition-transform ease-in-out hover:scale-110 hover:shadow-lg">
-                <a
+                <Link
                   href="https://github.com/FakirHerif/react-django"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <AiFillGithub className="w-6 h-6 text-white" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
