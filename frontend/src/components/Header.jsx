@@ -93,39 +93,44 @@ function Header() {
     };
 
     return (
-        <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 py-3 shadow-md h-[86px]">
-            <div className="flex justify-evenly items-center ml-10 mr-10">
-                <Link to="/" className="text-3xl font-bold italic text-white animate-pulse md:w-auto flex justify-center items-center no-underline">
+        <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 flex py-3 shadow-md lg:h-[86px]">
+        <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+           <div className='flex flex-row space-x-24'>
+           <div className="flex items-center space-x-4">
+                <Link to="/" className="text-xl lg:text-3xl font-bold italic text-white animate-pulse md:w-auto flex justify-center items-center no-underline">
                     <span style={{ color: "#ff4500" }}>TICKET</span>
-                    <span style={{ color: "#a5b4fc", fontSize: "42px" }}>X</span>
+                    <span style={{ color: "#a5b4fc" }} className="text-[30px] lg:text-[48px] ">
+                        X
+                    </span>
                 </Link>
+            </div>
 
-                <div id='headerevent' className="items-center space-x-4">
-                    <nav style={{ display: 'flex', gap: '5px' }} className="space-x-4">
+                <div id='headerevent' className="lg:flex lg:items-center lg:space-x-4 ">
+    <nav className="flex flex-col lg:flex-row lg:gap-5 space-x-4 text-indigo-200 font-bold">
+        <NavDropdown title="ETKİNLİKLER" id="basic-nav-dropdown" className='  Slg:order-last '>
+            <NavDropdown.Item>
+                <Link to="/categories/all" className='text-blue-700 font-bold no-underline'>
+                    <ul><li>TÜM ETKİNLİKLER</li></ul>
+                </Link>
+            </NavDropdown.Item>
+            {categories.map((category) => (
+                <NavDropdown.Item key={category.id}>
+                    <Link to={`/categories/${category.id}`} className='text-blue-700 font-bold no-underline'><ul><li>{category.title}</li></ul></Link>
+                </NavDropdown.Item>
+            ))}
+        </NavDropdown>
+    </nav>
+</div>
+           </div>
 
 
-                        <NavDropdown title="ETKİNLİKLER" id="basic-nav-dropdown" style={{ color: 'white', fontSize: "16px", paddingTop: "4px" }} className='font-medium z-40 '>
-                            <NavDropdown.Item>
-                                <Link to="/categories/all" style={{ color: '#3730a3', textDecoration: 'none', fontSize: '16px' }} className='font-bold'>
-                                    <ul><li>TÜM ETKİNLİKLER</li></ul>
-                                </Link>
-                            </NavDropdown.Item>
-                            {categories.map((category) => (
-                                <NavDropdown.Item  key={category.id}>
-                                    <Link to={`/categories/${category.id}`} style={{ color: '#3730a3', textDecoration: 'none', fontSize: "16px", }} className='font-bold '><ul ><li>{category.title}</li></ul></Link>
-                                </NavDropdown.Item>
-                            ))}
-                        </NavDropdown>
-
-                    </nav>
-                </div>
                 <div id='searchbarheader' className="flex items-center space-x-4">
                     <div className="flex items-center">
                         <div className="relative">
                             <input
                                 type="text"
                                 placeholder="Etkinlik, sanatçı ya da mekan arayın..."
-                                className="px-4 py-1 rounded-md border-2 border-solid border-white focus:outline-none w-96 placeholder:italic text-sm"
+                                className="px-4 py-1 rounded-md border-2 border-solid border-white focus:outline-none w-96 placeholder:italic text-sm "
                                 value={searchTerm}
                                 onChange={handleInputChange}
                             />
@@ -139,25 +144,26 @@ function Header() {
                     </div>
                 </div>
 
-               
-
-                    <div style={{ display: 'flex', alignItems: 'center', marginRight: "24px" }}>
-                        {user ? (
-                            <p className='pt-3' style={{ color: 'white', fontSize: '18px', display: 'flex', alignItems: 'center' }}>
-                                HOŞGELDİN, <span style={{ color: "#ff4500", fontSize: '24px', fontWeight: 'bold', marginRight: "5px", marginLeft: "5px" }}>{user.username}</span> !
-                                <LuPartyPopper className='ml-2 text-yellow-300 text-3xl' />
-                            </p>
-                        ) : (
-                            // <p style={{ color: 'white', fontSize: '18px' }}>Giriş Yapmadınız ! </p>
-                            []
-                        )}
-                    </div>
-                
 
 
+               <div className='flex flex-row space-x-4 lg:space-x-20'>
+               <div style={{ display: 'flex', alignItems: 'center', marginRight: "24px" }}>
+                    {user ? (
+                        <p className='pt-3' style={{ color: 'white', fontSize: '18px', display: 'flex', alignItems: 'center' }}>
+                            HOŞGELDİN, <span style={{ color: "#ff4500", fontSize: '24px', fontWeight: 'bold', marginRight: "5px", marginLeft: "5px" }}>{user.username}</span> !
+                            <LuPartyPopper className='ml-2 text-yellow-300 text-3xl' />
+                        </p>
+                    ) : (
+                        // <p style={{ color: 'white', fontSize: '18px' }}>Giriş Yapmadınız ! </p>
+                        []
+                    )}
+                </div>
 
-                    <div id='headerbuttons' className="flex items-center space-x-4">
-                        {/* <div className="relative flex items-center mr-16">
+
+
+
+                <div id='headerbuttons' className="flex items-center space-x-4">
+                    {/* <div className="relative flex items-center mr-16">
                             <button
                                 onClick={openCart}
                                 onMouseEnter={() => setIsHovered(true)}
@@ -187,50 +193,51 @@ function Header() {
 
 
 
-                        {isLoggedIn ? (
-                            <>
+                    {isLoggedIn ? (
+                        <>
 
-                                <Dropdown>
-                                    <Dropdown.Toggle style={{ display: "flex", flexDirection: "row", borderRadius: "96px", backgroundImage: `url(${userprofile})`, backgroundSize: 'cover', overflow: 'hidden', width: "48px", height: "48px", alignItems: "end", justifyContent: "center" }} className='ring-2 ring-indigo-400 hover:scale-105 hover:ease-out transition duration-500 hover:ring-4 hover:ring-indigo-300 mb-3' variant="secondary" id="dropdown-basic">
-                                    </Dropdown.Toggle>
+                            <Dropdown>
+                                <Dropdown.Toggle style={{ display: "flex", flexDirection: "row", borderRadius: "96px", backgroundImage: `url(${userprofile})`, backgroundSize: 'cover', overflow: 'hidden', width: "48px", height: "48px", alignItems: "end", justifyContent: "center" }} className='ring-2 ring-indigo-400 hover:scale-105 hover:ease-out transition duration-500 hover:ring-4 hover:ring-indigo-300 mb-3' variant="secondary" id="dropdown-basic">
+                                </Dropdown.Toggle>
 
-                                    <Dropdown.Menu className='border-2 border-indigo-600 z-20 bg-white/25'>
-                                        <Dropdown.Item className='relative group transform transition-transform' href="#">Profilim<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
-                                        <Dropdown.Item className='relative group transform  transition-transform' href="#">Sepetim<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
-                                        <Dropdown.Item className='relative group transform  transition-transform' href="#">Ayarlar<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
-                                        <Dropdown.Item href="#"> <button
-                                            onClick={handleLogout}
-                                            className='relative group transform hover:text-indigo-500 transition-transform'     >
-                                            Çıkış Yap
-                                            <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span>
-                                        </button></Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                <Dropdown.Menu className='border-2 border-indigo-600 z-20 bg-white/25'>
+                                    <Dropdown.Item className='relative group transform transition-transform' href="#">Profilim<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
+                                    <Dropdown.Item className='relative group transform  transition-transform' href="#">Sepetim<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
+                                    <Dropdown.Item className='relative group transform  transition-transform' href="#">Ayarlar<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
+                                    <Dropdown.Item href="#"> <button
+                                        onClick={handleLogout}
+                                        className='relative group transform hover:text-indigo-500 transition-transform'     >
+                                        Çıkış Yap
+                                        <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span>
+                                    </button></Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
 
 
-                            </>
-                        ) : (
-                            <>
+                        </>
+                    ) : (
+                        <>
+                            <Link
+                                to="/login"
+                                className='text-white p-3 font-semibold no-underline rounded-full  text-base flex flex-row items-center  hover:bg-gray-700 hover:ease-out hover:scale-105 transition duration-500 hover:ring-2 hover:ring-blue-500 hover:text-indigo-500'
+                            >
+                                <FaUser className='text-base mr-2' />
+                                Giriş Yap
+                                {/* <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span> */}
+                            </Link>
+                            {isLoggedIn ? null : (
                                 <Link
-                                    to="/login"
-                                    className='text-white p-3 font-semibold no-underline rounded-full  text-base flex flex-row items-center  hover:bg-gray-700 hover:ease-out hover:scale-105 transition duration-500 hover:ring-2 hover:ring-blue-500 hover:text-indigo-500'
+                                    to="/register"
+                                    className='text-white px-3 py-3 no-underline text-base rounded-full bg-indigo-500/50 flex flex-row items-center hover:bg-blue-500 hover:ease-out  transition duration-500 hover:scale-105 font-normal  '
                                 >
-                                    <FaUser className='text-base mr-2' />
-                                    Giriş Yap
-                                    {/* <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform"></span> */}
+                                    Kayıt Ol
+                                    <LuLogIn className='text-lg ml-2' />
                                 </Link>
-                                {isLoggedIn ? null : (
-                                    <Link
-                                        to="/register"
-                                        className='text-white px-3 py-3 no-underline text-base rounded-full bg-indigo-500/50 flex flex-row items-center hover:bg-blue-500 hover:ease-out  transition duration-500 hover:scale-105 font-normal  '
-                                    >
-                                        Kayıt Ol
-                                        <LuLogIn className='text-lg ml-2' />
-                                    </Link>
-                                )}
-                            </>
-                        )}
-                    </div>
+                            )}
+                        </>
+                    )}
+                </div>
+               </div>
 
 
 
