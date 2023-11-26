@@ -38,7 +38,7 @@ const Events = ({ events }) => {
     return new Date(dateString).toLocaleDateString("tr-TR", options);
   };
   return (
-    <div className="h-full bg-gray-100 p-4 md:p-8 lg:p-12">
+    <div className="h-full bg-gray-100 px-12 lg:px-20 py-10 ">
       <div
         id="events"
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
