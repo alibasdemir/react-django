@@ -213,21 +213,22 @@ function EventDetails() {
             className="bg-white p-10 lg:ml-20 my-10 lg:w-auto w-full rounded-2xl relative"
             style={{ boxShadow: "0 4px 8px #cbd5e1" }}
           >
-            <div className="justify-center flex">
+            <div className="justify-center flex ">
               <h3 className="text-indigo-500">Etkinliğe Dair</h3>
             </div>
             <div
-              className="border border-gray-100 my-4 px-8 py-3 rounded-2xl items-center"
+              className="border border-gray-100 my-4 px-8 py-3 rounded-2xl items-center  lg:w-[340px] sm:w-auto"
               style={{ boxShadow: "0 4px 8px #cbd5e1" }}
             >
               <div className=" flex justify-center items-center">
                 <p className="font-bold text-lg text-black">{event.name}</p>
               </div>
-              <div className="flex items-center ">
+              <div className="grid grid-flow-col items-center">
                 <MdDateRange className="text-rose-600 text-2xl" />
                 <span className="text-base text-gray-700 px-2">
                   {formatDate(event.start_date)}
                 </span>
+
                 <span>/</span>
                 <span className="text-base text-gray-700 px-2">
                   {formatDate(event.end_date)}
@@ -297,7 +298,7 @@ function EventDetails() {
                 </div>
               </div>
 
-              <div style={seatContainerStyle}>
+              <div style={seatContainerStyle} className="flex justify-center">
                 {event.seats.map((seat, index) => (
                   <div
                     key={index}
