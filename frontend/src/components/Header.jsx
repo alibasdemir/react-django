@@ -93,8 +93,8 @@ function Header() {
     };
 
     return (
-        <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 flex py-3 shadow-md lg:h-[86px]">
-        <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+        <header id='header' className="bg-gradient-to-r from-purple-800 via-blue-800 to-purple-800 flex py-3 lg:h-[86px] " >
+        <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0 " >
            <div className='flex flex-row space-x-24'>
            <div className="flex items-center space-x-4">
                 <Link to="/" className="text-xl lg:text-3xl font-bold italic text-white animate-pulse md:w-auto flex justify-center items-center no-underline">
@@ -106,7 +106,7 @@ function Header() {
             </div>
 
                 <div id='headerevent' className="lg:flex lg:items-center lg:space-x-4 ">
-    <nav className="flex flex-col lg:flex-row lg:gap-5 space-x-4 text-indigo-200 font-bold">
+    <nav className="flex flex-col lg:flex-row lg:gap-5 space-x-4 text-blue-300 hover:scale-105 hover:text-indigo-200 font-bold">
         <NavDropdown title="ETKİNLİKLER" id="basic-nav-dropdown" className='  Slg:order-last '>
             <NavDropdown.Item>
                 <Link to="/categories/all" className='text-blue-700 font-bold no-underline'>
