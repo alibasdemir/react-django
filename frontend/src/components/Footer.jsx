@@ -92,23 +92,23 @@ function Footer() {
             </li>
           </ul>
         </div>
-        <div className="md:w-1/7 pt-5 lg:block hidden">
+        <div className=" md:w-1/7 pt-5 lg:block hidden ">
           <h3 className="text-l font-bold mb-3 pb-2">İletişim</h3>
-          <address className="text-slate-300 text-sm ">
-            <p>Adres: 1234 Sokak No: 5</p>
-            <p>
+          <address className="text-slate-300 text-sm flex flex-col ">
+            <span className="mb-1">Adres: 1234 Sokak No: 5</span>
+            <span className="mb-1">
               Telefon:{" "}
               <Link href="tel:(123) 456-7890" className="text-purple-500">
                 {" "}
                 (123) 456-7890
               </Link>
-            </p>
-            <p>
+            </span>
+            <span className="mb-1">
               E-posta:{" "}
               <Link href="mailto:info@example.com" className="text-purple-500">
                 info@example.com
               </Link>
-            </p>
+            </span>
           </address>
         </div>
 
@@ -174,19 +174,19 @@ function Footer() {
       </div>
       <div className="h-px bg-blue-800"></div>
       <div className="flex flex-col md:flex-row items-center pt-5 mx-4 md:mx-24 text-slate-300 text-sm md:space-y-0">
-        <p
+        <span
           className="hover:underline hover:text-purple-700"
           style={{ cursor: "pointer" }}
         >
           Kullanım Şartları
-        </p>
+        </span>
         <div className="md:ml-5"></div>
-        <p
+        <span
           className="hover:underline hover:text-purple-700"
           style={{ cursor: "pointer" }}
         >
           Gizlilik politikası
-        </p>
+        </span>
         <div className="md:ml-5"></div>
         <p className="md:ml-auto">
           ©Copyright 2023{" "}
