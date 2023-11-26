@@ -4,7 +4,7 @@ import { RiArrowRightSLine } from "react-icons/ri";
 
 function FinishedEvents() {
   return (
-    <div className="text-center mb-6 lg:mx-20 mx-5">
+    <div className="text-center mb-6 mx-12 lg:mx-24">
       <div
         className="eventHeader bg-gray-100 rounded-full flex items-center lg:justify-start justify-center py-3 lg:px-10 content-center"
         style={{ boxShadow: "0 4px 8px #cbd5e1" }}
