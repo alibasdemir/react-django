@@ -34,7 +34,7 @@ class Seat(models.Model):
 class Event(models.Model):
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    locationUrl = models.URLField()
+    locationUrl = models.URLField(max_length=1000)
     owner = models.CharField(max_length=255)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name="category")
