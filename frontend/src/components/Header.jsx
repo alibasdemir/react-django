@@ -98,16 +98,15 @@ function Header() {
            <div className='flex flex-row space-x-24'>
            <div className="flex items-center space-x-4">
                 <Link to="/" className="text-xl lg:text-3xl font-bold italic text-white animate-pulse md:w-auto flex justify-center items-center no-underline">
-                    <span style={{ color: "#ff4500" }}>TICKET</span>
-                    <span style={{ color: "#a5b4fc" }} className="text-[30px] lg:text-[48px] ">
+                    <span style={{ color: "#ff4500" }} title='ANASAYFA'>TICKET</span>
+                    <span style={{ color: "#a5b4fc" }} className="text-[30px] lg:text-[48px] " title='ANASAYFA'>
                         X
                     </span>
                 </Link>
             </div>
-
-                <div id='headerevent' className="lg:flex lg:items-center lg:space-x-4 ">
-    <nav className="flex flex-col lg:flex-row lg:gap-5 space-x-4 text-blue-300 hover:scale-105 hover:text-indigo-200 font-bold">
-        <NavDropdown title="ETKİNLİKLER" id="basic-nav-dropdown" className='  Slg:order-last '>
+                <div id='headerevent' className="lg:flex lg:items-center lg:space-x-12 ">
+                <nav className="flex flex-col lg:flex-row lg:gap-5 space-x-4 text-indigo-200 font-bold">
+        <NavDropdown title="ETKİNLİKLER" id="basic-nav-dropdown" className='Slg:order-last' style={{ color: 'white'}}>
             <NavDropdown.Item>
                 <Link to="/categories/all" className='text-blue-700 font-bold no-underline'>
                     <ul><li>TÜM ETKİNLİKLER</li></ul>
@@ -120,6 +119,9 @@ function Header() {
             ))}
         </NavDropdown>
     </nav>
+                        <Link to="/finishedevents" className="text-white font-bold no-underline">
+                            BİTMİŞ ETKİNLİKLER
+                        </Link>
 </div>
            </div>
 
