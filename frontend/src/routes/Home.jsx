@@ -43,7 +43,7 @@ const Home = () => {
       <img
         src={photo1}
         alt="Event 1"
-        className="w-screen pt-12 pl-[64px] pr-[64px] pb-12"
+        className="w-full md:w-2/3 lg:w-1/2 xl:w-screen mx-auto pt-14 lg:px-16 px-3 pb-12"
       />
       <Footer />
     </div>
