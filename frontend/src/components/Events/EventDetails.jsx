@@ -58,11 +58,13 @@ function EventDetails() {
   };
 
   const imageStyle = {
-    width: "25vw",
-    height: "30vw",
-    objectFit: "cover",
+    width: "30vw",
+    height: "20vw",
+    objectFit: "fill",
     borderRadius: "10px",
     margin: "auto",
+    border: "4px solid black",
+    boxShadow: "2px 4px 10px black",
   };
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -111,12 +113,14 @@ function EventDetails() {
   }
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     dotsClass: "slick-dots custom-dots-class",
+    prevArrow: <></>,
+    nextArrow: <></>,
   };
 
   const today = new Date();

@@ -116,7 +116,7 @@ const Slider = () => {
           ))}
         </SlickSlider>
       </div>
-      <div className="absolute left-[140px] top-2/3 transform -translate-y-1/2">
+      <div className="absolute left-[500px]">
         <button
           className="bg-purple-300 text-gray-700 p-2 m-2 rounded-full transition-transform transform hover:scale-110 hover:bg-fuchsia-600 hover:text-white animate-bounce lg:block hidden"
           onClick={goToPrevSlide}
@@ -124,7 +124,7 @@ const Slider = () => {
           <FaArrowLeft className="text-xl" />
         </button>
       </div>
-      <div className="absolute right-[140px] top-2/3 transform -translate-y-1/2">
+      <div className="absolute right-[500px]">
         <button
           className="bg-purple-300 text-gray-700 p-2 m-2 rounded-full transition-transform transform hover:scale-110 hover:bg-fuchsia-600 hover:text-white animate-bounce lg:block hidden"
           onClick={goToNextSlide}
