@@ -204,8 +204,11 @@ function Header() {
 
                                 <Dropdown.Menu className='border-2 border-indigo-600 z-20 bg-white/25'>
                                     <Dropdown.Item className='relative group transform transition-transform' href="#">Profilim<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
+                                    <Dropdown.Item as={Link} to="/changepassword">
+                                    Şifre Değiştir
+                                    <span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span>
+                                    </Dropdown.Item>
                                     <Dropdown.Item className='relative group transform  transition-transform' href="#">Sepetim<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
-                                    <Dropdown.Item className='relative group transform  transition-transform' href="#">Ayarlar<span className="absolute w-full h-0.5 bg-blue-600 bottom-0 left-0 transform scale-x-0 group-hover:scale-x-100 transition-transform "></span></Dropdown.Item>
                                     <Dropdown.Item href="#"> <button
                                         onClick={handleLogout}
                                         className='relative group transform hover:text-indigo-500 transition-transform'     >
