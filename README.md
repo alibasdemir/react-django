@@ -108,16 +108,16 @@ This project is not a professional-grade work. Therefore, it lacks some function
 
 ------------------------------------------------------------------------
 
-<img src="images/event.png" width="500" height="800">
+<img src="images/event.png" width="500" height="600">
 
 ------------------------------------------------------------------------
 
-<img src="images/event2.png" width="500" height="800">
+<img src="images/event2.png" width="500" height="600">
 
 ------------------------------------------------------------------------
 
-<img src="images/login.jpg" width="500" height="800">
+<img src="images/login.jpg" width="500" height="500">
 
 ------------------------------------------------------------------------
 
-<img src="images/register.jpg" width="500" height="800">
+<img src="images/register.jpg" width="500" height="500">
