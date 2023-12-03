@@ -17,7 +17,7 @@ const FinishedEventsPage = () => {
   };
 
   useEffect(() => {
-    axios.get('http://fakirherif.pythonanywhere.com/events/')
+    axios.get('https://fakirherif.pythonanywhere.com/events/')
       .then(response => {
         const filteredEvents = response.data.filter(event => {
           const endDate = new Date(event.end_date);

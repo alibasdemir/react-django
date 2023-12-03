@@ -30,7 +30,7 @@ function ChangePassword() {
     };
 
     axios
-      .post("http://fakirherif.pythonanywhere.com/api/v1/users/set_password/", data, {
+      .post("https://fakirherif.pythonanywhere.com/api/v1/users/set_password/", data, {
         headers: {
           Authorization: `Token ${userToken}`,
           "Content-Type": "application/json",

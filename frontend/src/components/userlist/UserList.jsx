@@ -16,7 +16,7 @@ function UserList() {
     }
 
     axios
-      .get("http://fakirherif.pythonanywhere.com/api/v1/users/", {
+      .get("https://fakirherif.pythonanywhere.com/api/v1/users/", {
         headers: {
           Authorization: `Token ${userToken}`,
         },
