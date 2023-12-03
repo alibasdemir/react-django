@@ -10,10 +10,16 @@ import "aos/dist/aos.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [captchaValue, setCaptchaValue] = useState(null);
   
+  const handleCaptchaChange = (value) => {
+    setCaptchaValue(value);
+  };
+
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -156,6 +162,7 @@ const LoginPage = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
+          {(formikProps) => (
           <Form className="mt-10 flex flex-col space-y-6">
             <div className="flex flex-col items-start">
               <label className="mb-1 inline-block text-sm font-medium text-gray-700 select-none cursor-pointer">
@@ -237,15 +244,24 @@ const LoginPage = () => {
                 )}
               </button>
             </div>
-            <button
-              className="mx-auto relative inline-flex flex-col items-center group rounded-xl py-2 px-10 text-sm font-medium transition-all no-underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed bg-indigo-700 text-white hover:text-gray-100 hover:bg-purple-700 active:bg-indigo-800 active:text-blue-100 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:text-gray-100 transform hover:scale-105 mt-20"
-              type="submit"
-            >
-              <span className="flex items-center justify-center flex-nowrap flex-none space-x-2">
-                <span>Giriş Yap</span>
+            <div className="flex items-center justify-center">
+              <ReCAPTCHA
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                onChange={handleCaptchaChange}
+                onError={(err) => console.error('reCAPTCHA Error:', err)}
+              />
+            </div>
+          <button
+            className="mx-auto relative inline-flex flex-col items-center group rounded-xl py-2 px-10 text-sm font-medium transition-all no-underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed bg-indigo-700 text-white hover:text-gray-100 hover:bg-purple-700 active:bg-indigo-800 active:text-blue-100 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:text-gray-100 transform hover:scale-105 mt-20"
+            type="submit"
+            disabled={!captchaValue || formikProps.isSubmitting}
+          >
+            <span className="flex items-center justify-center flex-nowrap flex-none space-x-2">
+              <span>Giriş Yap</span>
               </span>
             </button>
           </Form>
+          )}
         </Formik>
         <div className="text-center mt-5">
           <p className="text-sm text-gray-500 ">
