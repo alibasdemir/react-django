@@ -88,7 +88,7 @@ function CategoryPage() {
         })
       );
     }
-    if (id === "search" && date.start && date.end && date.start <= date.end) {
+    if (id === "search" && date.start && date.end && (date.start <= date.end)) {
       setFilterEvents(
         events.filter(
           (item) =>
@@ -205,7 +205,8 @@ function CategoryPage() {
                         <button
                           className="cursor-pointer flex flex-row justify-center items-center bg-blue-500 text-white rounded-md p-2 mb-3 hover:bg-indigo-700 transition-colors ease-in-out duration-300 hover:scale-105 text-center"
                           id="search"
-                          onClick={handleFilter}
+                          type="search"
+                          onClick={() => handleFilter (null, "search")}
                         >
                           ARA
                         </button>
