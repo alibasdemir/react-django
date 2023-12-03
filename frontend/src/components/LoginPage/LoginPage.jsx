@@ -46,7 +46,7 @@ const LoginPage = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     axios
-      .post("http://localhost:8000/api/v1/token/login", values)
+      .post("http://fakirherif.pythonanywhere.com/api/v1/token/login", values)
       .then((response) => {
         console.log("Giriş Başarılı: ", response.data);
         toast.success("Giriş başarılı. Şimdi giriş yaptınız.", {

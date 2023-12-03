@@ -14,7 +14,7 @@ const Events = ({ events }) => {
   useEffect(() => {
     // Axios ile verileri çekmek için bir GET isteği yapın.
     axios
-      .get("http://127.0.0.1:8000/events")
+      .get("http://fakirherif.pythonanywhere.com/events")
       .then((response) => {
         setEventData(response.data);
       })

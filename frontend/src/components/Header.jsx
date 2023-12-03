@@ -23,7 +23,7 @@ function Header() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await fetch('http://localhost:8000/categories');
+                const response = await fetch('http://fakirherif.pythonanywhere.com/categories');
                 if (response.ok) {
                     const data = await response.json();
                     setCategories(data);
@@ -74,7 +74,7 @@ function Header() {
         const normalizedTerm = normalizeTurkishChars(searchTerm).toLowerCase();
 
         try {
-            const response = await fetch(`http://localhost:8000/search-events/?query=${encodeURIComponent(normalizedTerm)}`);
+            const response = await fetch(`http://fakirherif.pythonanywhere.com/search-events/?query=${encodeURIComponent(normalizedTerm)}`);
             if (response.ok) {
                 const data = await response.json();
                 console.log('Search Results:', data);

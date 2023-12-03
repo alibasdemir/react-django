@@ -44,9 +44,9 @@ function CategoryPage() {
           };
           setCategoryTitle(allCategory.title);
           setCategoryImage(allCategory.img_url);
-          endpoint = "http://localhost:8000/events";
+          endpoint = "http://fakirherif.pythonanywhere.com/events";
         } else {
-          endpoint = `http://localhost:8000/categories/${categoryId}/events`;
+          endpoint = `http://fakirherif.pythonanywhere.com/${categoryId}/events`;
         }
         const response = await fetch(endpoint);
         if (response.ok) {

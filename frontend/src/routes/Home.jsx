@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/events")
+      .get("http://fakirherif.pythonanywhere.com/events")
       .then((response) => {
         console.log("Tüm etkinlikler:", response.data);
 

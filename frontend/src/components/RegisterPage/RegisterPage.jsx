@@ -42,7 +42,7 @@ const RegisterPage = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     axios
-    .post("http://localhost:8000/api/v1/users/", values)
+    .post("http://fakirherif.pythonanywhere.com/api/v1/users/", values)
     .then((response) => {
       console.log("Kayıt Başarılı: ", response.data);
       toast.success("Kayıt başarılı!");

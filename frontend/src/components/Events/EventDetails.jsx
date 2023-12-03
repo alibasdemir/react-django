@@ -93,7 +93,7 @@ function EventDetails() {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/events/${eventId}`);
+        const response = await fetch(`http://fakirherif.pythonanywhere.com/events/${eventId}`);
         if (response.ok) {
           const data = await response.json();
           setEvent(data);
