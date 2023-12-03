@@ -315,7 +315,7 @@ function CategoryPage() {
                       <div className="flex flex-row items-center justify-center pr-6 pl-6 ">
                         <MdDateRange className="mr-2 text-gray-600 mb-3" />
                         <p className="text-sm  text-gray-400 ">
-                          {event.start_date} / {event.end_date}
+                        Başlangıç: {new Date(event.start_date).toLocaleDateString("tr-TR", { year: "numeric", month: "long", day: "numeric" })} / Bitiş: {new Date(event.end_date).toLocaleDateString("tr-TR", { year: "numeric", month: "long", day: "numeric" })}
                         </p>
                       </div>
 

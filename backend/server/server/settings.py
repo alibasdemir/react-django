@@ -162,3 +162,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+DATE_FORMAT = 'd/m/Y'  # Günlük tarih formatı: gün/ay/yıl
+DATE_INPUT_FORMATS = [
+    '%d/%m/%Y',  # Input formatı: gün/ay/yıl
+]
