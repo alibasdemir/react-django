@@ -4,6 +4,14 @@ A quick overview of the final project of techcareer bootcamp; a simple clone of 
 
 **Note:** This project was developed collaboratively as a team effort. You can view the contributors from the Contributors section.
 
+# Live Preview
+
+You can access the live preview of the project [here.](https://react-django-taupe.vercel.app/)
+
+**Important Note:** *Please note that due to the backend API fetching data from PythonAnywhere, the live preview of the project might encounter a delay of approximately 30-40 seconds. Your patience is appreciated when accessing the site.*
+
+**Also** don't forget to replace the 'fakirherif.pythonanywhere.com' links in the frontend react components with 'localhost:8000' to use the project locally. This change ensures the proper functioning of API calls on your local environment.
+
 # Getting Started
 
 - cd backend
@@ -13,6 +21,38 @@ A quick overview of the final project of techcareer bootcamp; a simple clone of 
 - cd frontend
     - npm i
     - npm start
+
+# Packages Used and Versions
+
+- **Backend**
+  - **django:** '4.2.7'
+  - **djangorestframework:** '3.14.0'
+  - **markdown:** '3.5.1'
+  - **djangoFilter:** '23.3'
+  - **djoser:** '2.2.0'
+  - **djangoCorsHeaders:** '4.3.0'
+  - **pillow:** '10.1.0'
+  - **unidecode:** '1.3.7'
+  - **whitenoise:** '6.6.0'
+
+- **Frontend**
+    - **aos**: ^2.3.4
+    - **axios**: ^1.6.0
+    - **bootstrap**: ^5.3.2
+    - **formik**: ^2.4.5
+    - **react**: ^18.2.0
+    - **react-bootstrap**: ^2.9.1
+    - **react-dom**: ^18.2.0
+    - **react-google-recaptcha**: ^3.1.0
+    - **react-icons**: ^4.12.0
+    - **react-redux**: ^8.1.3
+    - **react-router-dom**: ^6.19.0
+    - **react-scripts**: ^5.0.1
+    - **react-slick**: ^0.29.0
+    - **react-toastify**: ^9.1.3
+    - **slick-carousel**: ^1.8.1
+    - **web-vitals**: ^2.1.4
+    - **yup**: ^1.3.2
 
 # Models
 
@@ -108,16 +148,16 @@ This project is not a professional-grade work. Therefore, it lacks some function
 
 ------------------------------------------------------------------------
 
-<img src="images/event.png" width="500" height="600">
+<img src="images/event.png" width="500" height="575">
 
 ------------------------------------------------------------------------
 
-<img src="images/event2.png" width="500" height="600">
+<img src="images/event2.png" width="500" height="500">
 
 ------------------------------------------------------------------------
 
-<img src="images/login.jpg" width="500" height="500">
+<img src="images/login.jpg" width="500" height="375">
 
 ------------------------------------------------------------------------
 
-<img src="images/register.jpg" width="500" height="500">
+<img src="images/register.jpg" width="500" height="375">
