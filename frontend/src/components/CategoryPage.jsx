@@ -46,7 +46,7 @@ function CategoryPage() {
           setCategoryImage(allCategory.img_url);
           endpoint = "https://fakirherif.pythonanywhere.com/events";
         } else {
-          endpoint = `https://fakirherif.pythonanywhere.com/${categoryId}/events`;
+          endpoint = `https://fakirherif.pythonanywhere.com/categories/${categoryId}/events`;
         }
         const response = await fetch(endpoint);
         if (response.ok) {
